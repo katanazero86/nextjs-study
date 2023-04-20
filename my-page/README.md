@@ -172,3 +172,13 @@ v13 문서를 살펴보면, 소괄호로 묶여진 폴더가 있는데 이 폴�
 
 `[[...slug]]` 이런 형태도 존재하는데, 이는 옵셔널을 의미함
 ![img.png](imgs/img4.png)
+
+---
+### Not Found 페이지
+
+- `notFound` 함수를 호출하면 해당 라우트 경로안에 not-found UI 를 출력
+- 버전업이 되면서 좀 달라짐   
+app 경로내에 not-found.tsx 를 작성하고 없는 경로를 입력하면 해당 컴포넌트 렌더링
+컴포넌트내에서 notFound() 함수를 호출하면 not-found.tsx 컴포넌트 렌더링
+- 가장 가까운 not-fount.tsx 를 찾음 없다면 app/not-found.tsx 가 호출이 되어짐
+- 버전 낮은거 쓴다면, pages 에 404.tsx 만들어서 커스텀 가능
