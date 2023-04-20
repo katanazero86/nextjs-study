@@ -32,3 +32,12 @@ app/about/page.tsx
 
 v13 에서는 구조가 v12 에 비하면 불편해졌다고 느낄수는 있음   
 하지만 loading, error, layout 등 경로별로 지정하고 만들 수 있기에 기능이 더 좋아졌다고 생각함
+
+---
+
+### 정적 라우팅 챌린지
+-pages 에 작성된 products 를 app 에 작성해보시오.
+```
+/products2
+/products2/pants2
+```
