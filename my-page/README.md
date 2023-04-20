@@ -220,3 +220,14 @@ export default function RootLayout({
 ![img.png](imgs/img5.png)
 
 해당 경로와 그 자식 경로들까지 모두 사용함
+자식 경로에 layout 을 작성한다면, 중첩되는 부분 확인이 가능
+`/products2`
+
+---
+### 링크 만들기
+
+- a 태그를 감싸는 next 에서 제공해주는 Link 컴포넌트 사용
+```
+<Link href='/contact'>Contact</Link>
+<Link href='/about'>About</Link>
+```
