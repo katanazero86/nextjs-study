@@ -91,7 +91,7 @@ Route (pages)                              Size     First Load JS
 ---
 ### 동적 라우팅
 
-- 상품 상세를 생각해보자.(상품 상세별로 이미지 바뀌고, 설명 바뀌고, 가격 바뀌고)
+- 상품 상세를 생각해보자.(상품 상세별로 이미지 바뀌고, 설명 바뀌고, 가격 바뀌고) -> 경로가 정해져 있지 않음
 - app 경로내에 대괄호 [] 를 해주고 작성하면 됨
 ```
 // app/products2/[slug]/page.tsx
@@ -112,3 +112,36 @@ export default function ProductsDetail(props: Props) {
 λ /products2/[slug]                      149 B          74.3 kB
 ```
 -> 람다 마크면 서버사이드 렌더링이 된다는 의미다.
+
+---
+### 페이지 미리 생성
+- 나는 서버사이드 렌더링을 하기는 싫다. 그냥 상품 상세 페이지 10개를 미리 만들어 두고 싶은데 어떻게함?   
+-> generateStaticParams() 함수 사용하기
+```
+interface Props {
+    params: {
+        slug: string;
+    }
+}
+
+export default function ProductsDetail(props: Props) {
+    const {params} = props;
+    return <h1>{params.slug} 나는 상품 상세!</h1>
+}
+
+export function generateStaticParams() {
+    const products = ['1', '2'];
+    return products.map(product => ({
+        slug: product
+    }));
+}
+```
+빌드를 해보자.
+```
+├ ● /products2/[slug]                      149 B          74.3 kB
+├   ├ /products2/1                                               
+├   └ /products2/2                                               
+```
+정적으로 페이지가 미리 생성된게 확인이 가능   
+동그라미가 꽉찬 형태는 정적으로 페이지가 생성은 된거지만, 고정된 속성값을 사용한거다라는 의미
+https://beta.nextjs.org/docs/data-fetching/generating-static-params   
