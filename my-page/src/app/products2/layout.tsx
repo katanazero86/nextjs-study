@@ -1,4 +1,13 @@
 import {ReactNode} from "react";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: '멋진 제품!',
+    description: '멋진 제품을 연습!',
+    icons: {
+        icon: '/favicon.ico'
+    }
+}
 
 export default function Products2Layout({children} : {children: ReactNode}) {
     return (

@@ -231,3 +231,68 @@ export default function RootLayout({
 <Link href='/contact'>Contact</Link>
 <Link href='/about'>About</Link>
 ```
+
+---
+### 변화에 대처하는 자세 & SEO 중요 내용
+
+- 페이지별로 의미있는 SEO 작업이 가능
+- v13.2 이상부터는 head 파일 사용이 중단됌(metadata API 사용)
+![img.png](imgs/img6.png)
+
+https://beta.nextjs.org/docs/guides/seo
+https://beta.nextjs.org/docs/api-reference/metadata
+
+- page 컴포넌트에 metadata 를 export 해주면 됌
+```
+// either Static metadata
+export const metadata = {
+  title: '...',
+};
+
+// or Dynamic metadata
+export async function generateMetadata({ params }) {
+  return {
+    title: '...',
+  };
+}
+```
+- next.js는 generateMetadata() 가 완료가 되어야 UI를 클라이언트에게 응답
+- 없다면, 상위에 metadata 를 사용하고 하위에 존재한다면 그걸 사용
+- 지정하지 않아도, default metadata 를 생성함
+```
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+```
+- layout 컴포넌트내에 템플릿 형태로도 작성이 가능
+```
+// basic options
+export const metadata = {
+  generator: 'Next.js',
+  applicationName: 'Next.js',
+  referrer: 'origin-when-cross-origin',
+  keywords: ['Next.js', 'React', 'JavaScript'],
+  authors: [{ name: 'Seb' }, { name: 'Josh', url: 'https://nextjs.org' }],
+  colorScheme: 'dark',
+  creator: 'Jiachi Liu',
+  publisher: 'Sebastian Markbåge',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+};
+```
+
+![img.png](imgs/img7.png)
+
+```
+/
+/products2
+```
+
+---
+
+### 장점 파악 및 마무리
+
+- Pre-fetching -> 기존에 미리 받아온 내용을 보여주기때문에 네트워크탭으로 확인해보면 별도의 네트워크 요청이 발생하지 않음   
+-> 최적화가 너무 잘되어있음
