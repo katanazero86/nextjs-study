@@ -145,3 +145,30 @@ export function generateStaticParams() {
 정적으로 페이지가 미리 생성된게 확인이 가능   
 동그라미가 꽉찬 형태는 정적으로 페이지가 생성은 된거지만, 고정된 속성값을 사용한거다라는 의미
 https://beta.nextjs.org/docs/data-fetching/generating-static-params   
+getStaticProps() 는 v12 에서 사용
+
+---
+### 정리
+
+- 라우팅은 2종류 -> 정적 라우팅, 동적 라우팅
+- Next.js 에서 page 란, 리액트 컴포넌트
+- 동적 라우팅을 하고자 한다면, [] 를 사용하면 동적으로 경로를 접근했을 때 해당 페이지를 동적으로 접근
+- Next.js 는 모든 페이지를 HTML을 미리 생성하여 응답함 -> 그래야 성능에도 좋고, SEO에도 좋음
+- app 경로에서 사용하는건 기본적으로 React Server Component 임   
+page   
+layout   
+template   
+loading   
+error   
+global-error   
+not-found   
+v13 문서를 살펴보면, 소괄호로 묶여진 폴더가 있는데 이 폴더는 경로가 생성되지는 않으며 경로들을 관심사 별로 묶어준다고 이해하면 됌 
+![img.png](imgs/img.png)
+![img.png](imgs/img2.png)
+
+저거 이외에 마치 전개 연산자처럼 작성하는게 있음
+![img.png](imgs/img3.png)
+중첩된 경로에 대해서 배열형태로 받을 수 있음
+
+`[[...slug]]` 이런 형태도 존재하는데, 이는 옵셔널을 의미함
+![img.png](imgs/img4.png)
