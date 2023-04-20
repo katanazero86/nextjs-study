@@ -87,3 +87,28 @@ Route (pages)                              Size     First Load JS
 -> app 폴더와 pages 폴더에 어떤 라우팅이 있는지 확인이 가능(동그라미 표시는 정적 라우팅 표시 서버는 람다기호)   
 -> 동그라미는 SSG 라고 이해하면 됌   
 -> `npm run start`  로 실행을 해보면, 훨씬 빠르게 동작하는 부분 확인이 가능 왜? -> 이미 만들어진 HTML을 내려받아서 렌더링 해주기때문
+
+---
+### 동적 라우팅
+
+- 상품 상세를 생각해보자.(상품 상세별로 이미지 바뀌고, 설명 바뀌고, 가격 바뀌고)
+- app 경로내에 대괄호 [] 를 해주고 작성하면 됨
+```
+// app/products2/[slug]/page.tsx
+
+interface Props {
+    params: {
+        slug: string;
+    }
+}
+export default function ProductsDetail(props: Props) {
+    const {params} = props;
+    return <h1>{params.slug} 나는 상품 상세!</h1>
+}
+```
+-> 빌드를 해서 확인해보자.   
+
+```
+λ /products2/[slug]                      149 B          74.3 kB
+```
+-> 람다 마크면 서버사이드 렌더링이 된다는 의미다.
