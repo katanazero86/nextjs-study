@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  notFound();
+  // notFound();
 
   return (
     // <main className={styles.main}>
