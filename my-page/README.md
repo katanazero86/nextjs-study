@@ -41,3 +41,49 @@ v13 에서는 구조가 v12 에 비하면 불편해졌다고 느낄수는 있음
 /products2
 /products2/pants2
 ```
+
+---
+
+### 빌드 결과 분석해보기
+
+- /products2 를 요청해보고 콘솔을 살펴보자.   
+```
+wait  - compiling /products2/page (client and server)...
+event - compiled client and server successfully in 720 ms (610 modules)
+wait  - compiling /products2/pants2/page (client and server)...
+event - compiled client and server successfully in 837 ms (612 modules)
+```
+-> 개발 모드에서는 요청할 때 페이지를 새롭게 생성
+
+- 빌드를 하면 어떨까?
+
+```
+Route (app)                                Size     First Load JS
+┌ ○ /                                      257 B          74.4 kB
+├ ○ /about2                                145 B          74.2 kB
+├ ○ /api/hello                             0 B                0 B
+├ ○ /favicon.ico                           0 B                0 B
+├ ○ /products2                             145 B          74.2 kB
+└ ○ /products2/pants2                      145 B          74.2 kB
++ First Load JS shared by all              74.1 kB               
+  ├ chunks/2443530c-cdafa828f3e7cc6d.js    50.2 kB               
+  ├ chunks/961-c842447005b6b281.js         22 kB                 
+  ├ chunks/main-app-60791f253988201a.js    215 B                 
+  └ chunks/webpack-c3afcc35c2c1b0fe.js     1.68 kB               
+
+Route (pages)                              Size     First Load JS
+┌ ○ /404                                   178 B            86 kB
+├ ○ /about                                 730 B          86.6 kB
+├ ○ /contact                               732 B          86.6 kB
+├ ○ /products                              771 B          86.6 kB
+└ ○ /products/pants                        777 B          86.6 kB
++ First Load JS shared by all              85.8 kB
+  ├ chunks/main-234c960905503371.js        84 kB
+  ├ chunks/pages/_app-c544d6df833bfd4a.js  192 B
+  └ chunks/webpack-c3afcc35c2c1b0fe.js     1.68 kB
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+```
+-> app 폴더와 pages 폴더에 어떤 라우팅이 있는지 확인이 가능(동그라미 표시는 정적 라우팅 표시 서버는 람다기호)   
+-> 동그라미는 SSG 라고 이해하면 됌   
+-> `npm run start`  로 실행을 해보면, 훨씬 빠르게 동작하는 부분 확인이 가능 왜? -> 이미 만들어진 HTML을 내려받아서 렌더링 해주기때문
