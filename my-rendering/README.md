@@ -74,3 +74,17 @@ v12 까지는 모두 이러한 과정을 page 단위로 처리를함
 또는 cache 설정을 no-store 로 설정하면 가능   
 그러면, fetch API 는 브라우저 API 아님? 뭐지 싶겠지만 React v18 에 추가된 Server Component 도 fetch API 는 동작하도록 지원
 
+```
+/products
+```
+
+### fetch 를 사용한 CSR
+
+- MeowArticle.tsx 참조
+
+![img.png](imgs/img6.png)
+
+결과
+![img.png](imgs/img7.png)
+
+처음에 Pre-Rendering 되어있는 HTML 내용에는 MeowArticle 컴포넌트에 대한 내용이 없다.
