@@ -143,3 +143,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 ![img.png](imgs/img10.png)
 
+### 최신 방식의 API 라우트
+- route.ts 또는 route.js 라는 파일명으로 만들어야 하며, 이걸 원하는 경로에 폴더로 생성해서 넣어주면 된다.
+my-rendering/src/app/api/test2/route.ts
+```
+import {getProducts} from "@/service/products";
+import {NextResponse} from "next/server";
+
+export async function GET(req: Request) {
+    const products = await getProducts();
+    return NextResponse.json(products);
+}
+```
+![img.png](imgs/img11.png)
+
+/api/test2   
+
+GET, POST, DELETE, PUT 등 코드를 구조별로 작성이 가능하다는 점이 정말 매력인거 같음
