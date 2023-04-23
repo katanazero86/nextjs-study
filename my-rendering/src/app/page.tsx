@@ -1,9 +1,9 @@
-import os from 'os';
-import Counter from "@/components/Counter"; // Node.js APIs
+import os from 'os'; // Node.js APIs
+import Counter from "@/components/Counter";
 
 export default function Home() {
 
-    console.log('안녕!');
+    console.log('안녕! - 서버');
     console.log(os.hostname());
 
     return (
