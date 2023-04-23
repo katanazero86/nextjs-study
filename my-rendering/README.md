@@ -105,3 +105,41 @@ v12 까지는 모두 이러한 과정을 page 단위로 처리를함
 ![img.png](imgs/img8.png)
 
 - v12 에서는 렌더링 방식을 페이지 단위 컴포넌트에서만 지정이 가능함과 동시에, 하나의 렌더링 방식만을 선택
+
+### API 라우트
+
+- Next.js 를 사용하면 풀스택 개발이 가능하다고 하였다. 그걸 가능하게 해주는게 Next.js 에서 지원해주는 API 라우트 기능
+- `/api/hello` 를 입력해보자(파일 삭제 했으면 안나옴) 
+![img.png](imgs/img9.png)
+
+```
+// api/hello.ts
+export async function GET(request: Request) {
+  return new Response('Hello, Next.js!')
+}
+```
+
+v12 에서는 pages/api 에 핸들러를 작성하면 되었다.
+
+참조: https://beta.nextjs.org/docs/routing/route-handlers
+- app/api 경로내에 핸들러를 작성
+- GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS 에 메서드를 지원
+- `export async function GET(request: Request) {}` 기본 구문을 이러함
+
+기존 pages/api 핸들러에 문제는 핸들러 함수를 하나를 작성하면 핸들러 함수내에서 GET, POST 에 대한 분기 처리 및 로직 처리를 해야했었음
+
+### 예전 방식의 API 라우트
+
+my-rendering/src/pages/api/test/index.ts
+```
+import {NextApiRequest, NextApiResponse} from "next";
+import {getProducts} from "@/service/products";
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const products = await getProducts();
+    return res.status(200).json(products);
+}
+```
+
+![img.png](imgs/img10.png)
+
