@@ -66,3 +66,11 @@ v12 까지는 모두 이러한 과정을 page 단위로 처리를함
 - build 이후에, start 해서 확인하면 페이지가 지정한 초 이후에 새로 업데이트가 되는 부분 확인이 가능
 - page 또는 layout 컴포넌트에서 사용이 가능
 - my-rendering/data/products.json 의 내용을 바꾸고 나서 새로고침 해보기
+
+### fetch 를 사용한 SSG, ISR, SSR
+
+`const res = await fetch('https://meowfacts.herokuapp.com', {next: { revalidate: 3}});` 이러한 부분이 있는데, 옵션을 지정하지 않으면 HTML을 만들어놓은걸 계속 사용하기 때문에 내용이 바뀌지 않음   
+0 을 사용하면 SSR 로 동작   
+또는 cache 설정을 no-store 로 설정하면 가능   
+그러면, fetch API 는 브라우저 API 아님? 뭐지 싶겠지만 React v18 에 추가된 Server Component 도 fetch API 는 동작하도록 지원
+
