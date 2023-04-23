@@ -18,3 +18,14 @@ app 폴더내에 존재하는 모든 컴포넌트는 기본적으로 Server Comp
 ![img.png](imgs/img2.png)
 
 브라우저 개발자 도구 콘솔에서는 아무것도 출력이 되지 않는다.
+
+### Client Component
+
+/my-rendering/src/components/Counter.tsx 컴포넌트 작성   
+해당 컴포넌트를 확인해보면, `'use client'` 키워드를 사용한게 눈에 들어온다.   
+해당 지시문을 사용하여 컴포넌트가 Client Component 임을 명시합니다.
+
+- 정리   
+Server Component 에서 실행되는 서버측 코드 -> File I/O, DB I/O 등과 같은 코드는 렌더링 이후에 포함이 되지 않는다.   
+Server Component 에서 할 수 없는 일 -> BOM API, DOM API, 상태관리, 이벤트 바인딩 등은 Client Component 에서 처리한다.   
+Client Component 에서 Server Component 를 직접 사용 할 수 없다. -> 항상 서버 컴포넌트가 클라이언트 컴포넌트를 포함하는 형태다.

@@ -1,7 +1,5 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-
-import os from 'os'; // Node.js APIs
+import os from 'os';
+import Counter from "@/components/Counter"; // Node.js APIs
 
 export default function Home() {
 
@@ -11,6 +9,7 @@ export default function Home() {
     return (
         <div>
             <h1>나는 my-rendering 홈페이지!</h1>
+            <Counter/>
         </div>
     )
 }
