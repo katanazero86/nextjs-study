@@ -59,3 +59,10 @@ v12 까지는 모두 이러한 과정을 page 단위로 처리를함
 - app 경로에 있는 컴포넌트는 기본적으로 Server Component -> React v18 부터 추가가 되었음
 - Server Component 는 유사함 -> PHP 라던가, Ruby on Rails 와 같이 동작함
 - Client Component 라고 해서, 클라이언트에서 렌더링 되는게 아니라 Pre-Render 가 되면서 HTML은 만들어저서 응답이 되어지고 해당 컴포넌트에서 동작하는 JS가 전달이 되어 hydrate 가 이루어짐 -> Next.js v12 에서 작동하는 방식
+
+### ISR
+- `export const revalidate` 구문 사용
+- 기본값은 false
+- build 이후에, start 해서 확인하면 페이지가 지정한 초 이후에 새로 업데이트가 되는 부분 확인이 가능
+- page 또는 layout 컴포넌트에서 사용이 가능
+- my-rendering/data/products.json 의 내용을 바꾸고 나서 새로고침 해보기
