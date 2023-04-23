@@ -96,3 +96,12 @@ v12 까지는 모두 이러한 과정을 page 단위로 처리를함
 이전에는 getServerSideProps = SSR, getStaticProps = SSG, getInitialProps = ISR 페이지 단위로 이러한 메서드를 사용함
 - Next.js 에서는 중복 요청이 발생하면, 중복에 관련해서 제거하여 요청이 하나씩만 가도록 최적화해줌(단, POST 요청은 제외)
 - Client Component 에서 사용가능한 use() 훅은 아직 RFC 라 준비중
+
+### Next.js v12
+
+- SSG -> getStaticProps() 사용하여 컴포넌트에 props 로 전달 / ISR 을 원한다면 revalidate 지정하면 가능
+- SSR -> getServerSideProps() 사용하여 props 로 전달
+
+![img.png](imgs/img8.png)
+
+- v12 에서는 렌더링 방식을 페이지 단위 컴포넌트에서만 지정이 가능함과 동시에, 하나의 렌더링 방식만을 선택
