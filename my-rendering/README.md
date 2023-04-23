@@ -52,3 +52,10 @@ my-rendering/src/components/Counter.tsx 컴포넌트에 로그는 서버에서�
 -> 이후에 실제로 UI 이벤트가 동작을 하려면 hydration 과정이 일어나야함 -> 리액트 컴포넌트 렌더링   
 
 v12 까지는 모두 이러한 과정을 page 단위로 처리를함
+
+### 공식 문서
+- Next.js v13 부터는 컴포넌트 레벨로 클라이언트 또는 서버 렌더링 기능을 지원   
+이전에는 pages 단위로 진행하였음 -> 해당 방식은 JS 번들링 사이즈가 커지는 문제가 있었음 / page 단위에 컴포넌트 렌더링 방식보다 성능이 좋음
+- app 경로에 있는 컴포넌트는 기본적으로 Server Component -> React v18 부터 추가가 되었음
+- Server Component 는 유사함 -> PHP 라던가, Ruby on Rails 와 같이 동작함
+- Client Component 라고 해서, 클라이언트에서 렌더링 되는게 아니라 Pre-Render 가 되면서 HTML은 만들어저서 응답이 되어지고 해당 컴포넌트에서 동작하는 JS가 전달이 되어 hydrate 가 이루어짐 -> Next.js v12 에서 작동하는 방식
