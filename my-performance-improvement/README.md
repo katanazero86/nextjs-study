@@ -147,3 +147,50 @@ const inter = Inter({ subsets: ['latin'] })
 ```
 -> 사용하고 싶은 font 가 있다면 google 에서 제공해주는 variable fonts(font set) 를 사용하면 됌
 https://fonts.google.com/variablefonts
+
+### Redirect
+
+- 다른 경로로 이동 시킬 때 사용
+next.config.js 를 아래와 같이 수정
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  images:{
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      }
+    ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/products/deleted_forever',
+        destination: '/products',
+        permanent: true
+      },
+      {
+        source: '/products/deleted_temp',
+        destination: '/products',
+        permanent: false,
+      },
+    ]
+  }
+}
+
+module.exports = nextConfig
+```
+
+/products/deleted_forever   
+/products/deleted_temp
+
+- permanent 속성에 따라 HTTP status code 가 달라짐 true = 308 / false = 307
+307 = Temporary Redirect   
+308 = Permanent Redirect   
+308은 영구적으로 이동되었음을 알리는 것이며, 307은 임시로 옮긴것을 알린다. -> 308은 검색엔진이 해당 페이지에 대한 색인을 새로 한다.   
+구글 검색엔진에서는 301과 308에 대한 검색 인덱싱을 동일하게 처리한다고 한다.   
+관련 글: https://robertmarshall.dev/blog/how-to-permanently-redirect-301-308-with-next-js/
