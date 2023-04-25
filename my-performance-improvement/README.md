@@ -272,3 +272,60 @@ const GoProductsButton = () => {
 
 export default GoProductsButton
 ```
+
+### 미들웨어
+
+API 요청 또는 사용자가 페이지를 방문할 때 검사를 해야하는 로직이 있다면? -> 미들웨어 작성
+- src 폴더를 사용한다면, src 폴더 내에 middleware 파일을 만들어서 작성
+
+```
+// my-performance-improvement/src/middleware.ts
+
+import {NextRequest} from "next/server";
+
+export function middleware(req: NextRequest) {
+    console.log('미들웨어가 실행!');
+}
+```
+
+![img.png](imgs/img12.png)
+
+미들웨어가 모든 요청에 대해서 동작을 하는게 확인이 가능.
+
+```
+// my-performance-improvement/src/middleware.ts
+
+import {NextRequest, NextResponse} from "next/server";
+
+export function middleware(req: NextRequest) {
+    console.log('미들웨어가 실행!');
+    if(req.nextUrl.pathname.startsWith('/products/1004')) {
+        console.log('경로를 리다이렉트!!');
+        return NextResponse.redirect(new URL('/products', req.url));
+    }
+}
+```
+
+/products/1004
+
+![img.png](imgs/img13.png)
+
+만약 특정한 페이지에서만 필요한 경우에는, export const config 로 작성
+
+```
+// my-performance-improvement/src/middleware.ts
+
+import {NextRequest, NextResponse} from "next/server";
+
+export function middleware(req: NextRequest) {
+    console.log('미들웨어가 실행!');
+    if(req.nextUrl.pathname.startsWith('/products/1004')) {
+        console.log('경로를 리다이렉트!!');
+        return NextResponse.redirect(new URL('/products', req.url));
+    }
+}
+
+export const config = {
+    matcher: ['/products/:path*'],
+}
+```
