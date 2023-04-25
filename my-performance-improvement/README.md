@@ -245,3 +245,30 @@ module.exports = nextConfig
 ```
 
 ![img.png](imgs/img10.png)
+
+### 동적으로 수행!
+
+- 동적으로 사용자를 redirect 수행하는 방법이 있음   
+next/navigation 에서 제공해주는 `redirect()` 함수를 사용   
+
+![img.png](imgs/img11.png)
+
+컴포넌트를 작성하다 보면, Server Component 에 뒤로가기와 같은 버튼을 작성하고 싶은 경우가 있는데 이것은 Client Component 로 빼줘야함   
+next/navigation 에서 제공해주는 useRouter() 를 사용하면 가능
+```
+'use client';
+
+import {useRouter} from "next/navigation";
+
+const GoProductsButton = () => {
+
+    const router = useRouter();
+
+    return <button onClick={() => {
+        router.replace('/products');
+    }
+    }>상품 페이지로 가기</button>
+}
+
+export default GoProductsButton
+```

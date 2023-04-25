@@ -1,6 +1,7 @@
 import {getProduct, getProducts} from '@/service/products';
 import {notFound} from 'next/navigation';
 import Image from "next/image";
+import GoProductsButton from "@/components/GoProductsButton";
 
 type Props = {
     params: {
@@ -26,6 +27,7 @@ export default async function PantsPage({params: {slug}}: Props) {
         <>
             <h1>{product.name} 제품 설명 페이지</h1>
             <Image src={product.imgUrl} alt="product-img" width={250} height={250} />
+            <GoProductsButton />
         </>
     )
 
