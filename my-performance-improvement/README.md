@@ -194,3 +194,54 @@ module.exports = nextConfig
 308은 영구적으로 이동되었음을 알리는 것이며, 307은 임시로 옮긴것을 알린다. -> 308은 검색엔진이 해당 페이지에 대한 색인을 새로 한다.   
 구글 검색엔진에서는 301과 308에 대한 검색 인덱싱을 동일하게 처리한다고 한다.   
 관련 글: https://robertmarshall.dev/blog/how-to-permanently-redirect-301-308-with-next-js/
+
+### Rewrite
+
+- 복잡한 URL을 다른것으로 대체해줌(실제 URL을 입력해도 되지만, rewrite 을 이용하면 축약도 가능)
+next.config.js 를 아래와 같이 수정
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  images:{
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      }
+    ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/products/deleted_forever',
+        destination: '/products',
+        permanent: true
+      },
+      {
+        source: '/products/deleted_temp',
+        destination: '/products',
+        permanent: false,
+      },
+    ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/test',
+        destination: '/',
+      },
+      {
+        source: '/items/:slug',
+        destination: '/products/:slug'
+      }
+    ]
+  },
+}
+
+module.exports = nextConfig
+```
+
+![img.png](imgs/img10.png)

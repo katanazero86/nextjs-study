@@ -24,7 +24,19 @@ const nextConfig = {
         permanent: false,
       },
     ]
-  }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/test',
+        destination: '/',
+      },
+      {
+        source: '/items/:slug',
+        destination: '/products/:slug'
+      }
+    ]
+  },
 }
 
 module.exports = nextConfig
