@@ -102,6 +102,6 @@ export default function Home() {
     //     </a>
     //   </div>
     // </main>
-      <h1>홈페이지다!</h1>
+      <h1 className={inter.className}>홈페이지다!</h1>
   )
 }

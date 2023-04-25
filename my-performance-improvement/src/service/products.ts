@@ -4,7 +4,8 @@ import {promises} from 'fs';
 export type Product = {
     id: string;
     name: string;
-    price: number
+    price: number;
+    imgUrl: string;
 }
 export async function getProducts(): Promise<Product[]> {
     const filePath = path.join(process.cwd(), 'data', 'products.json');

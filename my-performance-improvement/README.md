@@ -131,3 +131,19 @@ module.exports = nextConfig
 ```
 
 이미지 로딩 시, 우선순위 지정이 가능 -> priority 속성 사용
+
+### Font
+- 13.2.0 부터는 @next/font 에서 next/font 로 모듈명이 변경되었고 더 이상 설치를 필요로 하지 않음
+- Font 도 Next.js 에서 최적화를 해줌
+- 처음에 글자가 출력이 되고, 이후에 font 가 다운로드가 완료가 되면 실제 폰트가 적용이 됌 -> 근데 font 마다 사이즈가 조금씩 다름 -> 결국에는 레이아웃 시프트 발생
+
+-> next/font 는 자동으로 직접 호스팅을 함 / 레이아웃 시프트가 발생하지 않는다. -> css size-adjust 속성을 사용
+
+```
+import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'] })
+// 생략..
+<h1 className={inter.className}>홈페이지다!</h1>
+```
+-> 사용하고 싶은 font 가 있다면 google 에서 제공해주는 variable fonts(font set) 를 사용하면 됌
+https://fonts.google.com/variablefonts

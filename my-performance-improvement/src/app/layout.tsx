@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import './globals.css';
 import styles from './layout.module.css';
+import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: '멋진 제품 사이트',
@@ -23,7 +25,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className={inter.className}>
       <header className={styles.header}>
         <h1>Demo App</h1>
         <nav className={styles.nav}>
