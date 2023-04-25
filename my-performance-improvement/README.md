@@ -52,3 +52,13 @@ Route (pages)                              Size     First Load JS
 products 컴포넌트가 SSG 로 만들어진게 확인이 되며, 이를 실행해보니 처음에 받은 HTML 에 "로딩중 입니다..." 는 보이지 않는다.
 
 -> 로딩은 동적으로 SSR 을 할 때 빠르게 내용을 보여주고 이후에 실제 내용을 표현하게 해주며, SSG 같은 경우에는 사실 로딩이라는건 큰 의미가 없다.
+
+### loading UI 자세한 동작 과정
+
+- React Suspense 를 사용
+![img.png](imgs/img3.png)
+- 경로내에 loading.jsx 또는 loading.tsx 를 만들기만 하면 됌
+![img.png](imgs/img4.png)
+
+한계는 loading 파일을 사용하면 해당 경로내에 한번만 사용이 가능 = 중첩된 Suspense 사용이 불가능 -> 이를 위해서는 경로내에 하나의 page 컴포넌트에 내용을 작은단위로 분리해야함   
+병렬적으로 data fetching 이 이루어지는 상황에서 loading 을 사용하고 싶다면, 직접 Suspense 로 감싸서 사용이 가능
