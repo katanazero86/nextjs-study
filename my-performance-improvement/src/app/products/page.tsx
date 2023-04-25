@@ -7,6 +7,7 @@ import MeowArticle from "@/components/MeowArticle";
 // export const revalidate = 3; // 단위는 sec 기본값은 false
 export default async function ProductsPage() {
 
+    throw new Error();
     const products = await getProducts();
 
     const res = await fetch('https://meowfacts.herokuapp.com', {next: { revalidate: 3}});

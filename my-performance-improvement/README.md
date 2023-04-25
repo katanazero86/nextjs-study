@@ -62,3 +62,18 @@ products 컴포넌트가 SSG 로 만들어진게 확인이 되며, 이를 실행
 
 한계는 loading 파일을 사용하면 해당 경로내에 한번만 사용이 가능 = 중첩된 Suspense 사용이 불가능 -> 이를 위해서는 경로내에 하나의 page 컴포넌트에 내용을 작은단위로 분리해야함   
 병렬적으로 data fetching 이 이루어지는 상황에서 loading 을 사용하고 싶다면, 직접 Suspense 로 감싸서 사용이 가능
+
+### error UI
+
+- error 는 React Error Boundary 를 사용
+- 경로내에 error.jsx 또는 error.tsx 를 작성하면 가능 -> error 컴포넌트는 무조건 클라이언트 컴포넌트
+
+my-performance-improvement/src/app/products/page.tsx 코드 내에, `throw new Error();` 코드를 추가 후, error.tsx 를 작성하였음
+
+![img.png](imgs/img5.png)
+
+에러가 발생하는게 확인이 가능하며, error.tsx 컴포넌트에 작성한 UI가 출력되는 부분도 확인   
+화면 왼쪽 하단에 UI가 하나 출력이 되는데 이것은 개발모드에서만 출력이 됌   
+
+ErrorBoundary 로 수동적으로도 사용이 가능   
+경로내에 error.jsx 또는 error.tsx 가 없고 상위경로에 있다면 그걸 출력해줌 -> 에러 버블링
