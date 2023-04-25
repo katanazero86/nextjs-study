@@ -77,3 +77,57 @@ my-performance-improvement/src/app/products/page.tsx 코드 내에, `throw new E
 
 ErrorBoundary 로 수동적으로도 사용이 가능   
 경로내에 error.jsx 또는 error.tsx 가 없고 상위경로에 있다면 그걸 출력해줌 -> 에러 버블링
+
+### Image
+
+- Next.js 에서 img 태그를 사용하지 않고, Image 컴포넌트를 사용   
+`<Image src={clothesImage} alt='clothesImage'/>`
+![img.png](imgs/img6.png)
+![img.png](imgs/img7.png)
+```
+<img alt="clothesImage" 
+loading="lazy" 
+width="500" 
+height="333" 
+decoding="async" 
+data-nimg="1" 
+style="color:transparent" 
+srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fclothes.08a4a46d.jpg&amp;w=640&amp;q=75 1x, 
+/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fclothes.08a4a46d.jpg&amp;w=1080&amp;q=75 2x" 
+src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fclothes.08a4a46d.jpg&amp;w=1080&amp;q=75">
+```
+
+URL 도 길고, size 가 20.7 kb 인게 확인이 된다. 원본 이미지 크기는 40.79 kb 다.   
+사진이 화면크기별로 최적화된게 확인이 가능하다.   
+
+위 같은 경우는 이미지를 직접 import 해와서 사용을 했다. 그래서 width, height 를 입력하지 않아도 Image 컴포넌트 사용이 가능했다. -> Next.js 가 해당 이미지에 대한 정보를 파악   
+URL 로 입력한다면 어떨까?
+`<Image src="https://images.unsplash.com/photo-1441986300917-64674bd600d8" alt="shop" />`
+![img.png](imgs/img8.png)
+
+width, height 를 400으로 지정하면 아래와 같은 화면이 출력이 된다.
+`<Image src="https://images.unsplash.com/photo-1441986300917-64674bd600d8" alt="shop" width={400} height={400} />`
+![img.png](imgs/img9.png)
+
+외부에 있는 img url 을 사용하려면, next.config.js 에 등록을 해줘야함.
+
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  images:{
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com'
+      }
+    ]
+  }
+}
+
+module.exports = nextConfig
+```
+
+이미지 로딩 시, 우선순위 지정이 가능 -> priority 속성 사용
