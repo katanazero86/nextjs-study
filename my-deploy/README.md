@@ -54,3 +54,39 @@ Repository access 부분에서 내가 원하는 저장소를 추가해주면 된
 ![img.png](imgs/img9.png)
 
 Good!
+
+### CI/CD 사용하기
+
+1. 코드 수정 후, commit & push
+2. Vercel 에서 자동으로 감지해서 빌드 시작 및 배포   
+-> Vercel 을 사용하면 자동으로 CI/CD 가 구축이 되어짐   
+-> CI/CD 파이프라인에 테스트도 없이 바로 commit & push 하자마자 반영이 되면, 매우 무서움(에러가 나는걸 사용자가 본다면 또는 관리자가 본다면..)
+3. 실제 현업에서는 개발용 브랜치를 두고, 배포가 되는 브랜치((release, master, main)를 구분
+```
+// 실습
+master 브랜치를 일단 dev 브랜치 개념으로 사용하겠음
+
+git checkout -b release
+git push
+
+```
+4. Vercel Settings 로 이동 후, 왼쪽에 Git 메뉴 클릭
+![img.png](imgs/img10.png)
+현재 설정된 프로덕션 브랜치 확인이 가능 일단 현재 실습에서는 release 브랜치를 사용할거므로, 변경   
+이제 우리는 개발 시, master 브랜치에서만 하면 됌.   
+코드 수정 후, master 브랜치에 반영.
+
+- CI(Continuous Integration) = 지속적인 통합   
+코드 변경사항을 주기적으로 빈번하게 병합해야 한다.   
+병합을 위한 단계(빌드, 테스트, 머지)의 자동화   
+-> 개발 생산성 향상 및 코드의 퀄리티 향상
+
+- CD(Continuous Delivery, Continuous Deployment) = 지속적인 제공 또는 지속적인 배포   
+
+CI 는 새로운 코드 변경 사항이 빌드 및 테스트 되어 저장소에 병합이 되는걸 의미   
+Continuous Delivery 는 CI 가 완료된(green 을 받은) 준비된 배포 프로젝트를 직접 검증 후, 최종적으로 배포를 하는데 이는 수동으로 이루어짐 이러한 단계를 지속적인 제공이라고함   
+Continuous Deployment 는 위 내용과 같은데, 수동이 아닌 자동으로 처리   
+-> CD 는 최종 배포단계가 자동인지 수동인지에 차이가 있음   
+
+정리: CI 가 새로운 소스코드의 빌드, 테스트 후에 저장소에 병합되는걸 의미하고, CD 는 배포가 준비된 제품을 자동 또는 수동으로 릴리즈 되는 것을 의미
+결론적으로, 빠르게 제품을 테스트 및 출시하고자 나온 프로세스가 CI/CD 임
