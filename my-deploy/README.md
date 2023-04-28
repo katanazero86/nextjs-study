@@ -42,4 +42,15 @@ Repository access 부분에서 내가 원하는 저장소를 추가해주면 된
 
 ![img.png](imgs/img6.png)
 
-배포가 완료되면, 축하한다고 나오고 Dashboard 에서 확인이 가능
+배포가 완료되면, 축하한다고 나오고 Dashboard 에서 확인이 가능   
+
+404 가 발생을 한다 Output 을 확인해보자.
+
+![img.png](imgs/img7.png)
+
+음..? 프로젝트 설정에서 Build & Development Settings 에서 Framework Preset 이 Next.js 로 설정이 되어있지 않다. Next.js 로 설정 후, 재배포 진행
+
+![img.png](imgs/img8.png)
+![img.png](imgs/img9.png)
+
+Good!
