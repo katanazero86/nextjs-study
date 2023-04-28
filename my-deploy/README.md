@@ -76,6 +76,28 @@ git push
 이제 우리는 개발 시, master 브랜치에서만 하면 됌.   
 코드 수정 후, master 브랜치에 반영.
 
+![img.png](imgs/img11.png)
+
+Vercel 에 빌드 및 배포가 이루어지는데, DOMAINS 에 보면 master 브랜치용 URL 과 해당 commit 에 URL 이 만들어진게 확인이 된다.   
+그리고 더 이상, 사용자 URL 이 나오지 않는게 확인이 가능하다.
+
+![img.png](imgs/img12.png)
+Preview: 미리보기   
+Production(Current): 배포한 상태의 변경사항  
+Production: 메인 URL 에 반영이 상태   
+
+이제 release 브랜치로 반영을 해보자.   
+5. github 에서 PR 생성   
+release <- master
+
+![img.png](imgs/img13.png)
+Vercel 에서 또 자동으로 무언가를 해준다. Inspect 를 클릭하면, 빌드된 상태와 로그 확인이 가능하며, Visit Preview 를 클릭하면 미리 페이지 확인이 가능하다.
+
+![img.png](imgs/img14.png)
+
+
+---
+
 - CI(Continuous Integration) = 지속적인 통합   
 코드 변경사항을 주기적으로 빈번하게 병합해야 한다.   
 병합을 위한 단계(빌드, 테스트, 머지)의 자동화   
@@ -90,3 +112,5 @@ Continuous Deployment 는 위 내용과 같은데, 수동이 아닌 자동으로
 
 정리: CI 가 새로운 소스코드의 빌드, 테스트 후에 저장소에 병합되는걸 의미하고, CD 는 배포가 준비된 제품을 자동 또는 수동으로 릴리즈 되는 것을 의미
 결론적으로, 빠르게 제품을 테스트 및 출시하고자 나온 프로세스가 CI/CD 임
+
+---
