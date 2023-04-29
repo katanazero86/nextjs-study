@@ -1,9 +1,9 @@
-import Image from 'next/image'
+import Profile from "@/components/Profile/Profile";
 
 export default function Home() {
   return (
     <main className="px-5">
-            test
+            <Profile />
     </main>
   )
 }
