@@ -21,4 +21,7 @@ tailwindcss 설정 문서 참조: https://tailwindcss.com/docs/guides/nextjs
 ```
 2023.04.28
 - 프로젝트 생성
+
+2023.04.29
+- Header, Footer 컴포넌트 작성 및 RootLayout 컴포넌트에 적용
 ```
