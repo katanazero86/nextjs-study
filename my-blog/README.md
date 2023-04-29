@@ -31,4 +31,5 @@ tailwindcss 설정 문서 참조: https://tailwindcss.com/docs/guides/nextjs
 - AboutItem 컴포넌트 작성 및 스타일링
 - PostsSection 컴포넌트 작성 및 스타일링(작성된 게시물에 대한 container UI)
 - PostsSection 에 사용할 Card 컴포넌트 작성 및 스타일링(참조: https://v1.tailwindcss.com/components/cards)
+- tailwind grid class 를 활용하여, 카드 UI 부분 반응형 작업
 ```
