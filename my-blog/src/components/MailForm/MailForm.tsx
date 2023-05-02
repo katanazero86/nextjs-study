@@ -28,7 +28,7 @@ const MailForm = () => {
 
     const handleMailSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formEl = e.target;
+        const formEl = e.target as HTMLFormElement;
 
         setIsDisabled(true);
 
@@ -53,7 +53,6 @@ const MailForm = () => {
                     fail: false,
                 });
             } else {
-                console.log(await res.json());
                 setConditionalToast({
                     success: false,
                     fail: true,

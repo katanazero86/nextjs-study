@@ -44,6 +44,7 @@ nodemailer 모듈 활용
 - 유효성 검사를 위해, yup 모듈 설치 및 mailFormSchema 작성
 - 메일 전송 성공 및 실패 시, 사용할 FailToast, SuccessToast 컴포넌트 작성
 - 메일 API 라우팅(post /api/mail) 및 서버 로직 작성
+- posts 페이지 작업 및 스타일링
 
 * gmail 을 사용하면, from 을 무조건 인증된 사용자로 변경함(앱 비밀번호를 발급받은 사용자의 이메일 주소)
 
@@ -51,5 +52,6 @@ nodemailer 모듈 활용
 1. https://nodemailer.com/about/
 2. https://velog.io/@mimi0905/Nodemailer%EB%A1%9C-%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0-with-%EC%B2%A8%EB%B6%80%ED%8C%8C%EC%9D%BC
 3. https://www.youtube.com/watch?v=t2LvPXHLrek
+4. https://www.npmjs.com/package/yup
 
 ```
