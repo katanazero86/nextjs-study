@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function PostsLayout({children}: { children: ReactNode }) {
     return (
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between px-5">
             {children}
             <nav className="grow-0 flex flex-col">
                 <p className="text-md font-semibold border-b border-indigo-500 mb-2">Category</p>
