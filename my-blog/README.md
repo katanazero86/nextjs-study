@@ -48,6 +48,11 @@ nodemailer 모듈 활용
 
 * gmail 을 사용하면, from 을 무조건 인증된 사용자로 변경함(앱 비밀번호를 발급받은 사용자의 이메일 주소)
 
+2023.05.03
+- api 라우팅 작성(api/posts/[type]) 및 연동
+- index 페이지에서 데이터를 불러오는 부분 작업 및 예시 md 파일 및 json 파일 생성
+- Card 컴포넌트 스타일링 수정
+
 참조
 1. https://nodemailer.com/about/
 2. https://velog.io/@mimi0905/Nodemailer%EB%A1%9C-%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0-with-%EC%B2%A8%EB%B6%80%ED%8C%8C%EC%9D%BC
