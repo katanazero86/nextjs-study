@@ -80,7 +80,7 @@ const MailForm = () => {
     useEffect(() => {
         return () => {
             if(timeout) {
-                clearTimeout(timeout)
+                clearTimeout(timeout);
                 timeout = null;
             }
         }

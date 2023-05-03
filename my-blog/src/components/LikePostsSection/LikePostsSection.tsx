@@ -5,6 +5,8 @@ import 'react-multi-carousel/lib/styles.css';
 import Card from "@/components/Card/Card";
 import CustomLeftArrow from "@/components/Buttons/CustomLeftArrow/CustomLeftArrow";
 import CustomRightArrow from "@/components/Buttons/CustomRightArrow/CustomRightArrow";
+import {Post} from "@/types/posts";
+import {useEffect, useState} from "react";
 
 const responsive = {
     desktop: {
@@ -25,9 +27,25 @@ const responsive = {
 };
 
 const LikePostsSection = () => {
+
+    const [data, setData] = useState<Post[]>([]);
+
+    const getLikePosts = async () => {
+        // like 이나, 사실은 전부 가지고오는것
+        const res = await fetch('/api/posts/like', {
+            method: 'get'
+        });
+        const targetData: Post[] = await res.json();
+        setData(targetData);
+    };
+
+    useEffect(() => {
+        getLikePosts();
+    }, []);
+
     return (
         <section className="py-4">
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-200">You may like</h3>
+            <h3 className="text-lg font-semibold text-slate-900">You may like</h3>
             <Carousel
                 swipeable={true}
                 draggable={true}
@@ -41,12 +59,12 @@ const LikePostsSection = () => {
                 customRightArrow={<CustomRightArrow/>}
                 customLeftArrow={<CustomLeftArrow/>}
             >
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
+                {data.map(item => <Card key={item.path}
+                                        title={item.title}
+                                        description={item.description}
+                                        date={item.date}
+                                        category={item.category}
+                                        path={item.path}/>)}
             </Carousel>
         </section>
     )
