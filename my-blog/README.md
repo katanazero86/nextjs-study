@@ -53,6 +53,11 @@ nodemailer 모듈 활용
 - index 페이지에서 데이터를 불러오는 부분 작업 및 예시 md 파일 및 json 파일 생성
 - Card 컴포넌트 스타일링 수정
 
+2023.05.04
+- api 라우팅 작성(api/posts) 및 연동
+- posts 페이지 데이터를 불러오는 부분 작업 및 카테고리 별 라우팅 처리
+- posts 페이지 카테고리 nav 영역 PostsCategoryNav 클라이언트 컴포넌트로 분리 및 해당 path 에 따른 스타일링 적용
+
 참조
 1. https://nodemailer.com/about/
 2. https://velog.io/@mimi0905/Nodemailer%EB%A1%9C-%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0-with-%EC%B2%A8%EB%B6%80%ED%8C%8C%EC%9D%BC
