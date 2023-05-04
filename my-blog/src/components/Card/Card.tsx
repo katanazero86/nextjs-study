@@ -5,18 +5,20 @@ interface CardProps {
     description: string;
     date: string;
     category: string;
+    imgUrl: string
     path: string;
 }
 
-const Card = ({title, description, date, category, path}: CardProps) => {
+const Card = ({title, description, date, category, imgUrl, path}: CardProps) => {
 
     const handleCardClick = () => {
         console.log(path);
     };
 
     return (
-        <div className="rounded overflow-hidden shadow-lg cursor-pointer h-full max-h-96 flex flex-col justify-between" onClick={handleCardClick}>
-            <img className="w-full max-h-56" src="/imgs/card.jpg" alt="posts-img"/>
+        <div className="rounded overflow-hidden shadow-lg cursor-pointer h-full max-h-96 flex flex-col justify-between"
+             onClick={handleCardClick}>
+            <img className="w-full max-h-56" src={imgUrl} alt="posts-img"/>
             <div className="px-6 py-4 grow flex flex-col justify-between">
                 <div>
                     <p className="text-sm text-right tracking-tighter mb-2">{date}</p>

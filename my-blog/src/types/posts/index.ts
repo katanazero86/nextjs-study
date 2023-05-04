@@ -3,6 +3,7 @@ export interface Post {
     description: string;
     date: string;
     category: string;
+    imgUrl: string;
     path: string;
     featured: boolean;
 }

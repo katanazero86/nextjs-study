@@ -3,8 +3,9 @@
     "title": "2021년 리뷰",
     "description": "2021년 한해 동안 배운 기술들, 생각들 정리",
     "date": "2021-12-31",
-    "category": "my story",
+    "category": "story",
     "path": "review-2021",
+    "imgUrl": "/imgs/posts/review-2021.png",
     "featured": false
   },
   {
@@ -13,6 +14,7 @@
     "date": "2022-05-08",
     "category": "javascript",
     "path": "javascript-basic",
+    "imgUrl": "/imgs/posts/javascript-basic.png",
     "featured": false
   },
   {
@@ -21,6 +23,7 @@
     "date": "2022-06-15",
     "category": "javascript",
     "path": "javascript-10-tips",
+    "imgUrl": "/imgs/posts/javascript-10-tips.png",
     "featured": true
   },
   {
@@ -29,14 +32,16 @@
     "date": "2022-08-21",
     "category": "backend",
     "path": "node-basic",
+    "imgUrl": "/imgs/posts/node-basic.png",
     "featured": false
   },
   {
     "title": "2022년 리뷰",
     "description": "2022년 한해 동안 배운 기술들, 생각들 정리",
     "date": "2022-12-31",
-    "category": "my story",
+    "category": "story",
     "path": "review-2022",
+    "imgUrl": "/imgs/posts/review-2022.png",
     "featured": false
   },
   {
@@ -45,6 +50,7 @@
     "date": "2023-04-10",
     "category": "backend",
     "path": "node-pro-tips",
+    "imgUrl": "/imgs/posts/node-pro-tips.png",
     "featured": true
   },
   {
@@ -53,6 +59,7 @@
     "date": "2023-04-15",
     "category": "frontend",
     "path": "best-react-practices",
+    "imgUrl": "/imgs/posts/best-react-practices.png",
     "featured": true
   },
   {
@@ -61,14 +68,16 @@
     "date": "2023-05-02",
     "category": "frontend",
     "path": "react18-walkthrough",
+    "imgUrl": "/imgs/posts/react18-walkthrough.png",
     "featured": true
   },
   {
     "title": "2023년 리뷰",
     "description": "2023년 한해 동안 배운 기술들, 생각들 정리",
     "date": "2023-12-31",
-    "category": "my story",
+    "category": "story",
     "path": "review-2023",
+    "imgUrl": "/imgs/posts/review-2023.png",
     "featured": true
   }
 ]

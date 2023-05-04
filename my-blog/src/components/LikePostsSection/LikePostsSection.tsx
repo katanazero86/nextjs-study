@@ -64,6 +64,7 @@ const LikePostsSection = () => {
                                         description={item.description}
                                         date={item.date}
                                         category={item.category}
+                                        imgUrl={item.imgUrl}
                                         path={item.path}/>)}
             </Carousel>
         </section>
