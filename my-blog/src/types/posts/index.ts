@@ -7,3 +7,9 @@ export interface Post {
     path: string;
     featured: boolean;
 }
+
+export interface DetailPost extends Post {
+    content: string;
+    prev: string;
+    next: string;
+}

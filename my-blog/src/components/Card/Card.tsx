@@ -1,5 +1,7 @@
 'use client';
 
+import {useRouter} from "next/navigation";
+
 interface CardProps {
     title: string;
     description: string;
@@ -11,8 +13,10 @@ interface CardProps {
 
 const Card = ({title, description, date, category, imgUrl, path}: CardProps) => {
 
+    const router = useRouter();
+
     const handleCardClick = () => {
-        console.log(path);
+        router.push(`/posts/detail/${path}`);
     };
 
     return (

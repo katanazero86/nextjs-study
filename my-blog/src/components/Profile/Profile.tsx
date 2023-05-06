@@ -3,6 +3,7 @@
 import profileImg from '../../../public/imgs/profile.png';
 import Image from 'next/image';
 import {useRouter} from 'next/navigation';
+import BasicButton from "@/components/Buttons/BasicButton/BasicButton";
 
 const Profile = () => {
 
@@ -20,9 +21,9 @@ const Profile = () => {
                 <strong>Front-end engineer</strong>
                 <p className="text-base">블로그 클론코딩!</p>
             </div>
-            <button className="py-2 px-3 bg-indigo-500 text-white text-sm font-semibold rounded-md shadow focus:outline-none" onClick={handleContactClick}>
+            <BasicButton onClick={handleContactClick}>
                 Contact Me
-            </button>
+            </BasicButton>
         </section>
     )
 };
