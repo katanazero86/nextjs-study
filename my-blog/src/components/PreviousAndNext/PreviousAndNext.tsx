@@ -5,8 +5,8 @@ import {useRouter} from "next/navigation";
 
 
 interface PreviousAndNextProps {
-    prev: string;
-    next: string;
+    prev: string | null;
+    next: string | null;
 }
 
 const PreviousAndNext = ({prev, next}: PreviousAndNextProps) => {
@@ -17,8 +17,13 @@ const PreviousAndNext = ({prev, next}: PreviousAndNextProps) => {
         router.push(`/posts/detail/${targetPath}`);
     };
 
+    const justifyAlign = () => {
+        if(prev && next) return 'justify-between';
+        if(!prev && next) return 'justify-end';
+    };
+
     return (
-        <div className="flex flex-row items-center justify-between py-6">
+        <div className={`flex flex-row items-center py-6 ${justifyAlign()}`}>
             {prev && <BasicButton onClick={() => handleClick(prev)}>
                 이전
             </BasicButton>}

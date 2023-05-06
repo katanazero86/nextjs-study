@@ -71,3 +71,33 @@ nodemailer 모듈 활용
 4. https://www.npmjs.com/package/yup
 
 ```
+
+---
+
+- Next.js v13.4 App Router 가 stable 로 업데이트
+
+- 경로
+```
+/
+/about
+/contact
+/posts
+/posts/[slug]
+/posts/detail/[id]
+```
+
+- API 경로
+```
+POST /api/mail
+GET /api/posts
+GET /api/posts/[type]
+GET /api/posts/detail/[id]
+```
+
+- 완성 화면
+![img.png](imgs/img.png)
+![img.png](imgs/img2.png)
+![img.png](imgs/img3.png)
+![img.png](imgs/img4.png)
+![img.png](imgs/img5.png)
+![img.png](imgs/img6.png)
