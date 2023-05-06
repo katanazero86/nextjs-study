@@ -58,6 +58,12 @@ nodemailer 모듈 활용
 - posts 페이지 데이터를 불러오는 부분 작업 및 카테고리 별 라우팅 처리
 - posts 페이지 카테고리 nav 영역 PostsCategoryNav 클라이언트 컴포넌트로 분리 및 해당 path 에 따른 스타일링 적용
 
+2023.05.06
+- api 라우팅 작성(api/posts/detail/[id]) 및 연동
+- /data/posts 에 있는 md 파일을 불러와 렌더링 처리
+- tailwindcss/typography, react-markdown, remark-gfm 모듈 추가 및 설정
+- 게시글 내에서 다음과 이전을 처리하는 로직 작성(현재는 카테고리별로 다음과 이전을 처리하지 않음)
+
 참조
 1. https://nodemailer.com/about/
 2. https://velog.io/@mimi0905/Nodemailer%EB%A1%9C-%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0-with-%EC%B2%A8%EB%B6%80%ED%8C%8C%EC%9D%BC
