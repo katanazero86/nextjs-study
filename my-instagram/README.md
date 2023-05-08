@@ -33,7 +33,11 @@ daisyui: v2.51.6
 2023.05.08
 - react-icons 패키지 추가
 - Header 컴포넌트 작성
-- Following, FollowingUserAvatar 컴포넌트 작성
+- FollowingSection, FollowingUserAvatar 컴포넌트 작성
+
+2023.05.09
+- like 및 bookmark 아이콘 컴포넌트 작성 및 스타일링
+- Card 컴포넌트 작성 및 스타일링
 
 ```
 
