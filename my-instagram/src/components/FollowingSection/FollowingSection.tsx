@@ -2,7 +2,7 @@ import FollowingUserAvatar from '@/components/FollowingSection/FollowingUserAvat
 
 export default function FollowingSection() {
   return (
-    <section className="flex flex-row overflow-x-auto min-h-fit py-4">
+    <section className="flex flex-row overflow-x-auto min-h-fit py-4 custom-scroll">
       <FollowingUserAvatar />
       <FollowingUserAvatar />
       <FollowingUserAvatar />
