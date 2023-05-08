@@ -23,5 +23,17 @@ daisyui: v2.51.6
 4. card 형태 UI 로 게시글이 나열되어있음
 5. card ui 에는 사용자의 아바타, 사용자의 ID, 사진, 좋아요, 즐겨찾기, 작성시간(상대적인 시간), 내용 및 댓글이 있음
 6. 사진 및 View all comments 를 클릭하면 상세로 이동
+7. 검색 페이지, 마이 페이지 등이 존재함
+```
+
+---
+
+- 작업
+```
+2023.05.08
+- react-icons 패키지 추가
+- Header 컴포넌트 작성
+- Following, FollowingUserAvatar 컴포넌트 작성
 
 ```
+
