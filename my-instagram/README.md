@@ -38,6 +38,14 @@ daisyui: v2.51.6
 2023.05.09
 - like 및 bookmark 아이콘 컴포넌트 작성 및 스타일링
 - Card 컴포넌트 작성 및 스타일링
+- sanity 가입 및 sanity 경로에 sanity-studio 프로젝트 생성
+- 강의 참조하여 User, Post 스키마 정의 및 sanity-studio 를 사용하여 더미 데이터 생성
+데이터를 추가했으나, 가독성이 떨어짐 -> sanity-studio 도 웹앱이므로 개선이 가능
 
 ```
 
+![img.png](imgs/img.png)
+sanity-studio 에서 저걸 하나하나 클릭해야, 누가 작성했고 이미지는 뭔지 확인이 가능   
+List Previews 이용하여 개선이 가능
+
+참조: https://www.sanity.io/docs/previews-list-views
