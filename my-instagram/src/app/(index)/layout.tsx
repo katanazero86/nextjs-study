@@ -1,6 +1,7 @@
 import '../globals.css';
 import { Inter } from 'next/font/google';
 import Header from '@/components/Header/Header';
+import AuthContext from '@/context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -11,10 +12,12 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html>
       <body className={`custom-scroll ${inter.className}`}>
-        <Header />
-        {children}
+        <AuthContext>
+          <Header />
+          {children}
+        </AuthContext>
       </body>
     </html>
   );

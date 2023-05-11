@@ -1,8 +1,24 @@
+'use client';
+
+import { MouseEvent } from 'react';
 import Link from 'next/link';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai';
 import { BiMessageSquareAdd } from 'react-icons/bi';
 
 export default function Header() {
+  const { data: session } = useSession();
+
+  const handleLogin = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    signIn();
+  };
+
+  const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    signOut();
+  };
+
   return (
     <header className="pt-2">
       <nav className="navbar">
@@ -34,9 +50,7 @@ export default function Header() {
               <li>
                 <a>My Page</a>
               </li>
-              <li>
-                <a>Logout</a>
-              </li>
+              <li>{session ? <a onClick={handleLogout}>Logout</a> : <a onClick={handleLogin}>Login</a>}</li>
             </ul>
           </div>
         </div>
