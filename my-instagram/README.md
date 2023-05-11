@@ -42,6 +42,11 @@ daisyui: v2.51.6
 - 강의 참조하여 User, Post 스키마 정의 및 sanity-studio 를 사용하여 더미 데이터 생성
 데이터를 추가했으나, 가독성이 떨어짐 -> sanity-studio 도 웹앱이므로 개선이 가능
 
+2023.05.11
+- Next Auth 부분 추가 및 간단하게 테스트
+- 로그인 페이지 작성 및 스타일링
+- layout 을 구분해서 사용하고자, Routes Groups 를 사용하여 root layout 분리
+
 ```
 
 ![img.png](imgs/img.png)
