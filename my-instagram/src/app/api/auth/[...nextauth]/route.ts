@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { DefaultSession, NextAuthOptions, Session } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
 // google aAuth 관련 키 발급 받아야함.
@@ -6,7 +6,20 @@ import GoogleProvider from 'next-auth/providers/google';
 // http://localhost:3000
 // http://localhost:3000/api/auth/callback/google
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
+  callbacks: {
+    async session({ session }) {
+      console.log(session);
+      const user = session?.user;
+      if (user) {
+        session.user = {
+          ...user,
+          userName: user.email?.split('@')[0] || '',
+        };
+      }
+      return session;
+    },
+  },
   pages: {
     signIn: '/login',
   },
