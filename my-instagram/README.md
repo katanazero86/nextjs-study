@@ -47,6 +47,49 @@ daisyui: v2.51.6
 - 로그인 페이지 작성 및 스타일링
 - layout 을 구분해서 사용하고자, Routes Groups 를 사용하여 root layout 분리
 
+2023.05.14
+- Next Auth 를 활용한 로그인 기능 구현 및 테스트 완료
+- login 이 되어있으면, / 로 이동, 되어 있지 않다면 /login 페이지로 이동 
+문서를 보면, v13 이전에 코드로 작성이 되어있으나 몇가지만 기억하면 작성이 가능
+
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { getProviders, signIn } from "next-auth/react"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../api/auth/[...nextauth]";
+
+// 이부분은 Client Component 에서 작성을 해주자.
+export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  return (
+    <>
+      {Object.values(providers).map((provider) => (
+        <div key={provider.name}>
+          <button onClick={() => signIn(provider.id)}>
+            Sign in with {provider.name}
+          </button>
+        </div>
+      ))}
+    </>
+  )
+}
+
+// 이부분은 ServerComponent 에 작성을 해주자.
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  
+  // If the user is already logged in, redirect.
+  // Note: Make sure not to redirect to the same page
+  // To avoid an infinite loop!
+  if (session) {
+    return { redirect: { destination: "/" } };
+  }
+
+  const providers = await getProviders();
+  
+  return {
+    props: { providers: providers ?? [] },
+  }
+}
+
 ```
 
 ![img.png](imgs/img.png)

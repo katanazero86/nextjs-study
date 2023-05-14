@@ -5,13 +5,14 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import LoginAction from '@/components/LoginAction/LoginAction';
 
 interface LoginPageProps {
-  searchParams?: {
+  params: {};
+  searchParams: {
     callbackUrl?: string;
   };
 }
 
 export default async function LoginPage(props: LoginPageProps) {
-  const callbackUrl = props.searchParams?.callbackUrl ?? '/';
+  const callbackUrl = props.searchParams.callbackUrl ?? '/';
 
   const session = await getServerSession(authOptions);
   if (session) redirect('/');

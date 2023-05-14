@@ -2,18 +2,11 @@
 
 import { MouseEvent } from 'react';
 import Link from 'next/link';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
 import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai';
 import { BiMessageSquareAdd } from 'react-icons/bi';
 
 export default function Header() {
-  const { data: session } = useSession();
-
-  const handleLogin = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    signIn();
-  };
-
   const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     signOut();
@@ -50,7 +43,9 @@ export default function Header() {
               <li>
                 <a>My Page</a>
               </li>
-              <li>{session ? <a onClick={handleLogout}>Logout</a> : <a onClick={handleLogin}>Login</a>}</li>
+              <li>
+                <a onClick={handleLogout}>Logout</a>
+              </li>
             </ul>
           </div>
         </div>
