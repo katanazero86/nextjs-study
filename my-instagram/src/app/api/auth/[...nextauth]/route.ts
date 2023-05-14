@@ -6,7 +6,10 @@ import GoogleProvider from 'next-auth/providers/google';
 // http://localhost:3000
 // http://localhost:3000/api/auth/callback/google
 
-const authOptions = {
+export const authOptions = {
+  pages: {
+    signIn: '/login',
+  },
   providers: [
     GoogleProvider({
       clientId: '281428094341-5shgecefq58ssgfu5drt0jfvv9stoou0.apps.googleusercontent.com',
