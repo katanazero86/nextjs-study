@@ -51,6 +51,8 @@ daisyui: v2.51.6
 - Next Auth 를 활용한 로그인 기능 구현 및 테스트 완료
 - login 이 되어있으면, / 로 이동, 되어 있지 않다면 /login 페이지로 이동 
 - next auth 에서 decode 에러가 발생을 한다면, NEXTAUTH_URL, NEXTAUTH_SECRET 환경변수 생성하기
+- 로그인한 사용자에 이미지로 아바타 이미지 처리하도록 변경 및 session 콜백 작성 및 session 타입 커스텀
+참조:https://next-auth.js.org/getting-started/typescript
 
 문서를 보면, v13 이전에 코드로 작성이 되어있으나 몇가지만 기억하면 작성이 가능
 

@@ -6,6 +6,9 @@ import GoogleProvider from 'next-auth/providers/google';
 // http://localhost:3000
 // http://localhost:3000/api/auth/callback/google
 
+// session 의 타입을 커스텀 해줘야함.
+// https://next-auth.js.org/getting-started/typescript
+
 export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session }) {
