@@ -100,6 +100,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 참조: https://www.sanity.io/docs/connect-your-content-to-next-js
 
 Insufficient permissions; permission "create" required
+-> sanity 프로젝트에서 token 을 발급 후 설정해 주자.
+
+- 로그인 시, 없는 정보면 sanity context-lake 에 create + create 시, 기존에 있는 사람이면 그냥 패스.
 
 
 ```
