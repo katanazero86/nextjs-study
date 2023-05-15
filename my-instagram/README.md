@@ -94,6 +94,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 }
 
+2023.05.15
+- next-sanity 모듈 추가
+참조: https://www.sanity.io/docs/js-client#quickstart
+참조: https://www.sanity.io/docs/connect-your-content-to-next-js
+
+Insufficient permissions; permission "create" required
+
+
 ```
 
 ![img.png](imgs/img.png)
