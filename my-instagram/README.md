@@ -104,6 +104,10 @@ Insufficient permissions; permission "create" required
 
 - 로그인 시, 없는 정보면 sanity context-lake 에 create + create 시, 기존에 있는 사람이면 그냥 패스.
 
+2023.05.18
+- 상세 모달 UI 작성 및 컴포넌트 명명 변경 및 폴더명 변경
+daisy ui modal 토글링을 어떤 태그에 하는지 + text-overflow 가 적용안되는 부분으로 인해 시간을 많이 소요
+
 
 ```
 
