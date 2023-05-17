@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai';
 import { BiMessageSquareAdd } from 'react-icons/bi';
+import Avatar from '@/components/Header/Avatar/Avatar';
 
 export default function Header() {
   const { data: session } = useSession();
@@ -35,11 +36,7 @@ export default function Header() {
           </label>
           {targetUser && (
             <div className="mx-2.5 dropdown dropdown-end">
-              <label tabIndex={0} className="avatar cursor-pointer">
-                <div className="w-10 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-2">
-                  <img src={targetUser?.image!} alt="avatar-img" />
-                </div>
-              </label>
+              <Avatar imgUrl={targetUser?.image!} />
               <ul
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-32 border border-slate-200"
