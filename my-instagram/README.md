@@ -113,7 +113,7 @@ daisy ui modal 토글링을 어떤 태그에 하는지 + text-overflow 가 적�
 - SWRConfigContext 파일 생성 및 작성
 - sanity 부분 수정 및 model 작성
 - sanity-studio 내에 user 스키마에 커스텀 Rule 작성
-
+- swr 을 활용하여, 팔로잉한 사용자가 출력이 되도록 FollowingSection 컴포넌트 코드 작성
 
 ```
 
