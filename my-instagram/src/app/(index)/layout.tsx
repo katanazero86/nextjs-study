@@ -6,6 +6,7 @@ import AuthContext from '@/context/AuthContext';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
+import SWRConfigContext from '@/context/SWRConfigContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +24,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <body className={`custom-scroll ${inter.className}`}>
         <AuthContext>
           <Header />
-          {children}
+          <SWRConfigContext>{children}</SWRConfigContext>
         </AuthContext>
       </body>
     </html>

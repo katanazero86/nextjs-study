@@ -33,7 +33,15 @@ export default {
           to: [{type: 'user'}],
         },
       ],
-      validation: (Rule) => Rule.unique(),
+      // validation: Rule => Rule.custom((field, context) => (context.document.flag && field === undefined) ? "This field must not be empty." : true)
+      validation: (Rule) => [
+        Rule.unique(),
+        Rule.custom((field, context) => {
+          if (field === undefined) return true
+          const filter = field.filter((value) => value._ref === context.document._id.split('.')[1])
+          return filter.length !== 0 ? '자신을 팔로잉 하시면 안됩니다.' : true
+        }),
+      ],
     },
     {
       title: 'followers',
@@ -45,7 +53,14 @@ export default {
           to: [{type: 'user'}],
         },
       ],
-      validation: (Rule) => Rule.unique(),
+      validation: (Rule) => [
+        Rule.unique(),
+        Rule.custom((field, context) => {
+          if (field === undefined) return true
+          const filter = field.filter((value) => value._ref === context.document._id.split('.')[1])
+          return filter.length !== 0 ? '자신을 팔로워 하시면 안됩니다.' : true
+        }),
+      ],
     },
     {
       title: 'bookmarks',

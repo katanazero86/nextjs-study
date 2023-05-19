@@ -108,6 +108,10 @@ Insufficient permissions; permission "create" required
 - 상세 모달 UI 작성 및 컴포넌트 명명 변경 및 폴더명 변경
 daisy ui modal 토글링을 어떤 태그에 하는지 + text-overflow 가 적용안되는 부분으로 인해 시간을 많이 소요
 
+2023.05.19
+- swr 모듈 추가
+- SWRConfigContext 파일 생성 및 작성
+
 
 ```
 

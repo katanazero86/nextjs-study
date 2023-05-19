@@ -1,12 +1,5 @@
-import { createClient } from 'next-sanity';
+import { client } from '@/sanity';
 import { UserModel } from '@/models/user';
-
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
-  dataset: 'production',
-  useCdn: false,
-  token: process.env.NEXT_PUBLIC_SANITY_API_TOKEN || '',
-});
 
 // *[ <filter> ]{ <projection> }
 // 참조: https://www.sanity.io/docs/groq
@@ -17,10 +10,16 @@ export const sanityUser = {
   },
 
   async findUserByUserName(targetUserName: string) {
-    return await client.fetch(`*[_type == "user" && userName ==${targetUserName}][0]`);
+    return await client.fetch(`*[_type == "user" && userName == "${targetUserName}"][0]{
+    ...,
+    following[]->{userName, userImage},
+    followers[]->{userName, userImage},
+    "bookmarks": bookmarks[]->_id
+    }`);
   },
 
   async createUser(targetUser: UserModel) {
-    return await client.create(targetUser);
+    // return await client.create(targetUser);
+    return await client.createIfNotExists(targetUser);
   },
 };
