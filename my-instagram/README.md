@@ -111,6 +111,8 @@ daisy ui modal 토글링을 어떤 태그에 하는지 + text-overflow 가 적�
 2023.05.19
 - swr 모듈 추가
 - SWRConfigContext 파일 생성 및 작성
+- sanity 부분 수정 및 model 작성
+- sanity-studio 내에 user 스키마에 커스텀 Rule 작성
 
 
 ```
