@@ -7,6 +7,7 @@ export const client = createClient({
   dataset: 'production',
   useCdn: false,
   token: process.env.NEXT_PUBLIC_SANITY_API_TOKEN || '',
+  apiVersion: '2021-10-21',
 });
 
 export const sanityClient = {

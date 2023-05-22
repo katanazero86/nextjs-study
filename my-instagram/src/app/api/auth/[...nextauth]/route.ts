@@ -33,14 +33,23 @@ export const authOptions: NextAuthOptions = {
       return true;
     },
     async session({ session }) {
-      console.log(session);
-      const user = session?.user;
-      if (user) {
-        session.user = {
-          ...user,
-          userName: user.email?.split('@')[0] || '',
-        };
+      try {
+        console.log(session);
+        const user = session?.user;
+        const userName = user.email?.split('@')[0] || '';
+        const result = await sanityClient.sanityUser.findIdByUserName(userName);
+
+        if (user) {
+          session.user = {
+            ...user,
+            userName,
+            id: result.id,
+          };
+        }
+      } catch (err) {
+        console.error(err);
       }
+
       return session;
     },
   },
