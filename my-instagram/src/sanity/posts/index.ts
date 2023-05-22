@@ -15,6 +15,7 @@ export const sanityPosts = {
       ...,
       author->{userName, userImage},
     },
+    "image": image.asset->
     }`);
   },
 };

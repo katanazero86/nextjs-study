@@ -10,7 +10,6 @@ import Avatar from '@/components/Header/Avatar/Avatar';
 export default function Header() {
   const { data: session } = useSession();
   const targetUser = session?.user;
-  console.log(targetUser);
 
   const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();

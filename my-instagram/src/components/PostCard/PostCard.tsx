@@ -9,16 +9,12 @@ import CardImg from '@/components/PostCard/CardImg/CardImg';
 import CardActions from '@/components/PostCard/CardActions/CardActions';
 import CardBody from '@/components/PostCard/CardBody/CardBody';
 import PostDetailModal from '@/components/Modals/PostDetailModal/PostDetailModal';
+import { parseDateAgo } from '@/utils/timeago.utils';
+import { PostsModel } from '@/models/posts';
 
-interface CardProps {
-  author?: string;
-  content?: string;
-  imgUrl?: string;
-  likes?: any[];
-  onClick?: () => void;
-}
+interface CardProps extends PostsModel {}
 
-export default function PostCard({ onClick }: CardProps) {
+export default function PostCard({ author, likeCount, isLike, commentCount, comments, image, _createdAt }: CardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCardImgClick = () => {
@@ -35,27 +31,29 @@ export default function PostCard({ onClick }: CardProps) {
   return (
     <>
       <div className="card w-full bg-base-100 shadow-xl my-4">
-        <CardImg imgUrl="/imgs/test-shoes.jpg" onClick={handleCardImgClick} />
+        <CardImg imgUrl={image} onClick={handleCardImgClick} />
         <CardBody>
           <div className="flex items-center justify-between">
             {/*TODO: 좋아요, 즐겨찾기 toggle*/}
-            <Like width={24} height={24} />
-            {/*<DisLike width={24} height={24} />*/}
+            {isLike ? <Like width={24} height={24} /> : <DisLike width={24} height={24} />}
             {/*<Bookmark width={24} height={24} />*/}
             <UnBookmark width={24} height={24} />
           </div>
-          <p>0 like</p>
-          <p className="font-semibold">{`{userId}`}</p>
-          <p className="truncate tracking-tight">
-            If a dog chews shoes whose shoes does he chooseasdasdasdasdasdasdasdasd?
-          </p>
-          <div>
-            <p className="truncate tracking-tight text-sm">yurang_official 나는야 댓글!</p>
-            <button className="no-underline btn btn-sm btn-link text-sm tracking-tight inline-block p-0 text-left">
-              View All 2 comments
-            </button>
-          </div>
-          <p className="tracking-tight text-xs text-gray-600">23 HOURS AGO</p>
+          <p>{likeCount ?? 0} like</p>
+          <p className="font-semibold">{author.userName}</p>
+          <p className="truncate tracking-tight">{}</p>
+          {commentCount !== undefined && commentCount > 0 && (
+            <div>
+              <p className="truncate tracking-tight text-sm">
+                {comments[0].author.userName} {comments[0].comment}
+              </p>
+              <button className="no-underline btn btn-sm btn-link text-sm tracking-tight inline-block p-0 text-left">
+                View All {commentCount} comments
+              </button>
+            </div>
+          )}
+
+          <p className="tracking-tight text-xs text-gray-600">{parseDateAgo(_createdAt)}</p>
         </CardBody>
         <div className="divider m-0"></div>
         <CardActions>
