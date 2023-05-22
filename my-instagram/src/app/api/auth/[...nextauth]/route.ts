@@ -37,13 +37,11 @@ export const authOptions: NextAuthOptions = {
         console.log(session);
         const user = session?.user;
         const userName = user.email?.split('@')[0] || '';
-        const result = await sanityClient.sanityUser.findIdByUserName(userName);
 
         if (user) {
           session.user = {
             ...user,
             userName,
-            id: result.id,
           };
         }
       } catch (err) {

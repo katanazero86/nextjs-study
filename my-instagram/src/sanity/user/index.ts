@@ -22,10 +22,4 @@ export const sanityUser = {
     // return await client.create(targetUser);
     return await client.createIfNotExists(targetUser);
   },
-
-  async findIdByUserName(targetUserName: string) {
-    return await client.fetch(`*[_type == "user" && userName == "${targetUserName}"][0]{
-    "id": _id,
-    }`);
-  },
 };
