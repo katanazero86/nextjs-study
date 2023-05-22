@@ -115,6 +115,12 @@ daisy ui modal 토글링을 어떤 태그에 하는지 + text-overflow 가 적�
 - sanity-studio 내에 user 스키마에 커스텀 Rule 작성
 - swr 을 활용하여, 팔로잉한 사용자가 출력이 되도록 FollowingSection 컴포넌트 코드 작성
 
+2023.05.22
+- SWR 리페칭 되는 부분 옵션 수정
+- Post 스키마에서 데이터 페칭을 위한 코드 작성 및 GROQ 작성
+- @sanity/image-url, timeago.js 모듈 추가
+- 데이터 페칭 및 컴포넌트 데이터 바인딩 및 테스트
+
 ```
 
 ![img.png](imgs/img.png)
