@@ -1,5 +1,6 @@
 import { createClient } from '@sanity/client';
 import { sanityUser } from '@/sanity/user';
+import { sanityPosts } from '@/sanity/posts';
 
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
@@ -10,4 +11,5 @@ export const client = createClient({
 
 export const sanityClient = {
   sanityUser,
+  sanityPosts,
 };
