@@ -123,6 +123,9 @@ daisy ui modal 토글링을 어떤 태그에 하는지 + text-overflow 가 적�
 
 GROQ 작성하고, 문서 살펴보느라 진행이 너무 더디다.. 일단은 강의보고 빨리 진행을 해야할거같음
 
+2023.05.23
+- 포스트 상세 모달 부분 구현(React portal 사용)
+
 ```
 
 ![img.png](imgs/img.png)

@@ -26,6 +26,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <Header />
           <SWRConfigContext>{children}</SWRConfigContext>
         </AuthContext>
+        <div id="portal"></div>
       </body>
     </html>
   );
