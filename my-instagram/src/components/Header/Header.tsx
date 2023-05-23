@@ -26,10 +26,14 @@ export default function Header() {
         </div>
         <div className="flex-none">
           <label tabIndex={0} className="pr-2 cursor-pointer">
-            <AiOutlineHome size={24} />
+            <Link href="/">
+              <AiOutlineHome size={24} />
+            </Link>
           </label>
           <label tabIndex={0} className="px-2 cursor-pointer">
-            <AiOutlineSearch size={24} />
+            <Link href="/search">
+              <AiOutlineSearch size={24} />
+            </Link>
           </label>
           <label tabIndex={0} className="px-2 cursor-pointer">
             <BiMessageSquareAdd size={24} />
