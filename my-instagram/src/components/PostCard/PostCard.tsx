@@ -11,10 +11,12 @@ import CardBody from '@/components/PostCard/CardBody/CardBody';
 import PostDetailModal from '@/components/Modals/PostDetailModal/PostDetailModal';
 import { parseDateAgo } from '@/utils/timeago.utils';
 import { PostsModel } from '@/models/posts';
+import ModalPortal from '@/components/Modals/ModalPortal';
 
 interface CardProps extends PostsModel {}
 
-export default function PostCard({ author, likeCount, isLike, commentCount, comments, image, _createdAt }: CardProps) {
+export default function PostCard(props: CardProps) {
+  const { author, likeCount, isLike, commentCount, comments, image, _createdAt } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCardImgClick = () => {
@@ -61,7 +63,11 @@ export default function PostCard({ author, likeCount, isLike, commentCount, comm
           <button className="btn btn-ghost btn-sm hover:bg-transparent text-indigo-500">댓글 달기</button>
         </CardActions>
       </div>
-      <PostDetailModal isOpen={isOpen} onClose={closeModal} />
+      {isOpen && (
+        <ModalPortal>
+          <PostDetailModal isOpen={isOpen} onClose={closeModal} post={{ ...props }} />
+        </ModalPortal>
+      )}
     </>
   );
 }

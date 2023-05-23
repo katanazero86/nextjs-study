@@ -10,11 +10,14 @@ export interface PostsModel {
   _updatedAt: string;
   likes?: { _id: string; userName: string }[];
   likeCount?: number;
-  comments: {
-    comment: string;
-    author: AuthorType;
-  }[];
+  comments?:
+    | {
+        comment: string;
+        author: AuthorType;
+      }[]
+    | null;
   commentCount?: number;
   isLike?: boolean | null;
   image: string;
+  content: string;
 }
