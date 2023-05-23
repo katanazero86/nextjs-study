@@ -1,3 +1,9 @@
+import SearchSection from '@/components/SearchSection/SearchSection';
+
 export default function SearchPage() {
-  return <div>나는 검색 페이지!!</div>;
+  return (
+    <>
+      <SearchSection />
+    </>
+  );
 }

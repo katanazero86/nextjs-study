@@ -47,7 +47,7 @@ export default function PostCard(props: CardProps) {
           {commentCount !== undefined && commentCount > 0 && (
             <div>
               <p className="truncate tracking-tight text-sm">
-                {comments[0].author.userName} {comments[0].comment}
+                {comments![0].author.userName} {comments![0].comment}
               </p>
               <button className="no-underline btn btn-sm btn-link text-sm tracking-tight inline-block p-0 text-left">
                 View All {commentCount} comments
