@@ -14,3 +14,12 @@ export interface UserMeModel extends UserModel {
   followers: SimpleUserType[];
   bookmarks: string[];
 }
+
+export interface SearchUserModel {
+  _id: string;
+  userImage: string;
+  userName: string;
+  name: string;
+  following: number;
+  followers: number;
+}

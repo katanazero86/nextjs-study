@@ -7,3 +7,14 @@ export const FIND_USER_BY_USERNAME_QUERY = (texts: TemplateStringsArray, targetU
     "bookmarks": bookmarks[]->_id
     }`;
 };
+
+export const FIND_USERS_BY_KEYWORD_QUERY = (texts: TemplateStringsArray, targetKeyword: string = '') => {
+  return `*[_type =="user" && (name match "${targetKeyword}") || (userName match "${targetKeyword}")]{
+  "userName": userName,
+  "name": name,
+  "userImage": userImage,
+  "_id": _id,
+  "following": count(following[]),
+  "followers": count(followers[]),
+  }`;
+};

@@ -1,7 +1,7 @@
 'use client';
 
-import PostCard from '@/components/PostCard/PostCard';
 import useSWR from 'swr';
+import PostCard from '@/components/PostCard/PostCard';
 import { PostsModel } from '@/models/posts';
 import { urlFor } from '@/sanity';
 
