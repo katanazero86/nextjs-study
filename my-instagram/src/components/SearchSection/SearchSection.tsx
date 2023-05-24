@@ -4,6 +4,7 @@ import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
 import { SearchUserModel } from '@/models/user';
 import useDebounce from '@/hooks/useDebounce';
+import Link from 'next/link';
 
 export default function SearchSection() {
   const [keyword, setKeyword] = useState('');
@@ -31,7 +32,7 @@ export default function SearchSection() {
       {data !== undefined &&
         data.length > 0 &&
         data.map((user) => (
-          <div className="flex flex-col w-full mt-4" key={user._id}>
+          <Link href={`/${user.userName}`} className="flex flex-col w-full mt-4" key={user._id}>
             <div className="grid card border border-2 rounded-box place-items-start p-4">
               <div className="flex flex-row items-center min-w-0 w-full">
                 <div className="avatar cursor-pointer">
@@ -43,11 +44,11 @@ export default function SearchSection() {
               </div>
               <div className="mt-1">
                 <p>{user.name}</p>
-                <p>{user.followers} followers</p>
-                <p>{user.following} following</p>
+                <p>{user.followers ?? 0} followers</p>
+                <p>{user.following ?? 0} following</p>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
     </section>
   );

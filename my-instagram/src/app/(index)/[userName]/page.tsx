@@ -2,12 +2,23 @@ import Tabs from '@/components/Tabs/Tabs';
 import TabItem from '@/components/Tabs/TabItem/TabItem';
 import UserInfo from '@/components/UserInfo/UserInfo';
 
+interface UserPageProps {
+  params: {
+    userName: string;
+    searchParams: {};
+  };
+}
+
 const TAB_ITEMS = ['POSTS', 'SAVED', 'LIKED'];
-export default function UserPage() {
+export default function UserPage(props: UserPageProps) {
+  console.log(props);
+
+  const { userName } = props.params;
+
   return (
     <div>
       <div className="divider"></div>
-      <UserInfo />
+      <UserInfo userName={userName} />
       <div className="divider"></div>
       <Tabs>
         {TAB_ITEMS.map((item) => (

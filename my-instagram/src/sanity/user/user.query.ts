@@ -4,7 +4,7 @@ export const FIND_USER_BY_USERNAME_QUERY = (texts: TemplateStringsArray, targetU
     ...,
     following[]->{userName, userImage},
     followers[]->{userName, userImage},
-    "bookmarks": bookmarks[]->_id
+    "bookmarks": bookmarks[]->_id,
     }`;
 };
 
@@ -17,4 +17,13 @@ export const FIND_USERS_BY_KEYWORD_QUERY = (texts: TemplateStringsArray, targetK
   "following": count(following[]),
   "followers": count(followers[]),
   }`;
+};
+
+export const FIND_USER_FOR_PROFILE_BY_USERNAME_QUERY = (texts: TemplateStringsArray, targetUserName: string) => {
+  return `*[_type == "user" && userName == "${targetUserName}"][0]{
+      ...,
+      "following": count(following[]),
+      "followers": count(followers[]),
+      "posts": count(*[_type == "post" && author->userName == "${targetUserName}"]),
+      }`;
 };
