@@ -1,6 +1,9 @@
 import { client } from '@/sanity';
 import { UserModel } from '@/models/user';
 import {
+  FIND_LIKED_OF,
+  FIND_POSTS_OF,
+  FIND_SAVED_OF,
   FIND_USER_BY_USERNAME_QUERY,
   FIND_USER_FOR_PROFILE_BY_USERNAME_QUERY,
   FIND_USERS_BY_KEYWORD_QUERY,
@@ -30,5 +33,17 @@ export const sanityUser = {
 
   async findUserForProfileByUserName(targetUserName: string) {
     return await client.fetch(FIND_USER_FOR_PROFILE_BY_USERNAME_QUERY`${targetUserName}`);
+  },
+
+  async findPostsOf(targetUserName: string) {
+    return await client.fetch(FIND_POSTS_OF`${targetUserName}`);
+  },
+
+  async findLikedOf(targetUserName: string) {
+    return await client.fetch(FIND_LIKED_OF`${targetUserName}`);
+  },
+
+  async findSavedOf(targetUserName: string) {
+    return await client.fetch(FIND_SAVED_OF`${targetUserName}`);
   },
 };
