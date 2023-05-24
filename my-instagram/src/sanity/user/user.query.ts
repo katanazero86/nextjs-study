@@ -30,18 +30,43 @@ export const FIND_USER_FOR_PROFILE_BY_USERNAME_QUERY = (texts: TemplateStringsAr
 
 export const FIND_POSTS_OF = (texts: TemplateStringsArray, targetUserName: string) => {
   return `*[_type == "post" && author->userName == "${targetUserName}" ] | order(_createdAt desc){
-       ...,  
+       ...,
+       author->{userName, userImage},
+      "likeCount": count(likes[]),
+      "isLike": length(likes[@->userName == "${targetUserName}"]) > 0,
+      "commentCount": count(comments[]),
+      "comments": comments[]{
+        ...,
+        author->{userName, userImage},
+      },
       }`;
 };
 
 export const FIND_LIKED_OF = (texts: TemplateStringsArray, targetUserName: string) => {
   return `*[_type == "post" && "${targetUserName}" in likes[]->userName ] | order(_createdAt desc){
        ...,
+       author->{userName, userImage},
+      "likeCount": count(likes[]),
+      "isLike": length(likes[@->userName == "${targetUserName}"]) > 0,
+      "commentCount": count(comments[]),
+      "comments": comments[]{
+        ...,
+        author->{userName, userImage},
+    },
+    
       }`;
 };
 
 export const FIND_SAVED_OF = (texts: TemplateStringsArray, targetUserName: string) => {
   return `*[_type == "post" && _id in *[_type == "user" && userName == "${targetUserName}"].bookmarks[]._ref ] | order(_createdAt desc){
        ...,
+       author->{userName, userImage},
+      "likeCount": count(likes[]),
+      "isLike": length(likes[@->userName == "${targetUserName}"]) > 0,
+      "commentCount": count(comments[]),
+      "comments": comments[]{
+      ...,
+      author->{userName, userImage},
+    },
       }`;
 };
