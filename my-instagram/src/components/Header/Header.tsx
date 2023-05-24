@@ -46,7 +46,7 @@ export default function Header() {
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-32 border border-slate-200"
               >
                 <li>
-                  <a>My Page</a>
+                  <Link href={`/${targetUser.userName}`}>My Page</Link>
                 </li>
                 <li>
                   <a onClick={handleLogout}>Logout</a>
