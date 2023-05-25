@@ -15,7 +15,7 @@ export default function UserInfo({ userName }: UserInfoProps) {
   const isFollowing = currentUser?.following.find((item) => item.userName === targetUser.userName);
 
   return (
-    <div className="flex w-full justify-center items-center">
+    <div className="flex w-full justify-center items-center py-2">
       <div className="avatar px-4">
         <div className="w-20 rounded-full">
           <img src={targetUser.userImage} />

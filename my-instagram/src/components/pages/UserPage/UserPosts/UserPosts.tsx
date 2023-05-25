@@ -2,12 +2,12 @@
 
 import { MouseEvent, useState } from 'react';
 import useSWR from 'swr';
-import Tabs from '@/components/Tabs/Tabs';
-import TabItem from '@/components/Tabs/TabItem/TabItem';
-import { urlFor } from '@/sanity';
+import Tabs from '@/components/atoms/Tabs/Tabs';
+import TabItem from '@/components/atoms/Tabs/TabItem/TabItem';
 import ModalPortal from '@/components/Modals/ModalPortal';
 import PostDetailModal from '@/components/Modals/PostDetailModal/PostDetailModal';
 import { PostsModel } from '@/models/posts';
+import { urlFor } from '@/sanity';
 
 interface PostImageProps {
   post: PostsModel;
@@ -49,7 +49,7 @@ export default function UserPosts({ userName }: UserPostsProps) {
   const { data, error } = useSWR(`/api/user/${userName}/${tab}`);
 
   return (
-    <>
+    <div className="mt-2">
       <Tabs>
         {TAB_ITEMS.map((item) => (
           <TabItem wFull key={item} isActive={tab === item.toLowerCase()} value={item} setTab={setTab}>
@@ -60,6 +60,6 @@ export default function UserPosts({ userName }: UserPostsProps) {
       <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {data !== undefined && data.length > 0 && data.map((d: any) => <PostImage post={d} key={d._id} />)}
       </div>
-    </>
+    </div>
   );
 }

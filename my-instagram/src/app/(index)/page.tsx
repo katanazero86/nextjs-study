@@ -1,5 +1,5 @@
-import FollowingSection from '@/components/FollowingSection/FollowingSection';
-import PostsSection from '@/components/PostsSection/PostsSection';
+import FollowingSection from '@/components/pages/IndexPage/FollowingSection/FollowingSection';
+import PostsSection from '@/components/pages/IndexPage/PostsSection/PostsSection';
 
 export default function IndexPage() {
   return (

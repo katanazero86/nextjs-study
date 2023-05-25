@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, MouseEvent } from 'react';
-import Like from '@/components/Icons/Like/Like';
-import DisLike from '@/components/Icons/DisLike/DisLike';
-import Bookmark from '@/components/Icons/Bookmark/Bookmark';
-import UnBookmark from '@/components/Icons/UnBookmark/UnBookmark';
+import Like from '@/components/atoms/Icons/Like/Like';
+import DisLike from '@/components/atoms/Icons/DisLike/DisLike';
+import Bookmark from '@/components/atoms/Icons/Bookmark/Bookmark';
+import UnBookmark from '@/components/atoms/Icons/UnBookmark/UnBookmark';
 import CardImg from '@/components/PostCard/CardImg/CardImg';
 import CardActions from '@/components/PostCard/CardActions/CardActions';
 import CardBody from '@/components/PostCard/CardBody/CardBody';
@@ -12,6 +12,8 @@ import PostDetailModal from '@/components/Modals/PostDetailModal/PostDetailModal
 import { parseDateAgo } from '@/utils/timeago.utils';
 import { PostsModel } from '@/models/posts';
 import ModalPortal from '@/components/Modals/ModalPortal';
+import TransparentButton from '@/components/atoms/Buttons/TransparentButton/TransparentButton';
+import { Divider } from '@/components/atoms/Divider/Divider';
 
 interface CardProps extends PostsModel {}
 
@@ -57,10 +59,10 @@ export default function PostCard(props: CardProps) {
 
           <p className="tracking-tight text-xs text-gray-600">{parseDateAgo(_createdAt)}</p>
         </CardBody>
-        <div className="divider m-0"></div>
+        <Divider />
         <CardActions>
           <input type="text" placeholder="Add a comment..." className="input input-sm w-full focus:outline-0" />
-          <button className="btn btn-ghost btn-sm hover:bg-transparent text-indigo-500">댓글 달기</button>
+          <TransparentButton onClick={() => alert('준비중')}>댓글 달기</TransparentButton>
         </CardActions>
       </div>
       {isOpen && (

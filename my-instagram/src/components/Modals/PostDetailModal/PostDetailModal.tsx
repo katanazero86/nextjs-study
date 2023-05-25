@@ -1,10 +1,12 @@
 import { MouseEvent } from 'react';
 import ModalContainer from '@/components/Modals/ModalContainer/ModalContainer';
-import Like from '@/components/Icons/Like/Like';
-import Bookmark from '@/components/Icons/Bookmark/Bookmark';
+import Like from '@/components/atoms/Icons/Like/Like';
+import Bookmark from '@/components/atoms/Icons/Bookmark/Bookmark';
+import DisLike from '@/components/atoms/Icons/DisLike/DisLike';
 import { PostsModel } from '@/models/posts';
-import DisLike from '@/components/Icons/DisLike/DisLike';
 import { parseDateAgo } from '@/utils/timeago.utils';
+import TransparentButton from '@/components/atoms/Buttons/TransparentButton/TransparentButton';
+import { Divider } from '@/components/atoms/Divider/Divider';
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -26,8 +28,8 @@ export default function PostDetailModal({ isOpen, onClose, post }: PostDetailMod
             </div>
             <p className="pl-3 font-semibold truncate tracking-tight">{post.author.userName}</p>
           </div>
-          <div className="divider m-0 w-full h-0"></div>
-          <p className="mb-4 font-normal text-gray-700 tracking-tight px-2 py-1 w-full">{post.content}</p>
+          <Divider />
+          <p className="font-normal text-gray-700 tracking-tight p-2 w-full">{post.content}</p>
           <div className="flex items-center px-2 mb-4 min-w-0">
             {post.comments !== undefined &&
               post.comments !== null &&
@@ -52,10 +54,10 @@ export default function PostDetailModal({ isOpen, onClose, post }: PostDetailMod
             <p className="grow">{post.likeCount ?? 0} like</p>
             <p className="tracking-tight text-xs text-gray-600 mt-2">{parseDateAgo(post._createdAt)}</p>
           </div>
-          <div className="divider m-0 w-full"></div>
-          <div className="flex items-center pt-2 pb-4 w-full">
+          <Divider />
+          <div className="flex items-center w-full">
             <input type="text" placeholder="Add a comment..." className="input input-sm w-full focus:outline-0" />
-            <button className="btn btn-ghost btn-sm hover:bg-transparent text-indigo-500">댓글 달기</button>
+            <TransparentButton onClick={() => alert('준비중')}>댓글 달기</TransparentButton>
           </div>
         </div>
       </>

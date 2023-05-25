@@ -1,5 +1,6 @@
-import UserInfo from '@/components/UserInfo/UserInfo';
-import UserPosts from '@/components/UserPosts/UserPosts';
+import UserInfo from '@/components/pages/UserPage/UserInfo/UserInfo';
+import UserPosts from '@/components/pages/UserPage/UserPosts/UserPosts';
+import { Divider } from '@/components/atoms/Divider/Divider';
 
 interface UserPageProps {
   params: {
@@ -12,9 +13,9 @@ export default function UserPage(props: UserPageProps) {
 
   return (
     <div>
-      <div className="divider"></div>
+      <Divider />
       <UserInfo userName={userName} />
-      <div className="divider"></div>
+      <Divider />
       <UserPosts userName={userName} />
     </div>
   );

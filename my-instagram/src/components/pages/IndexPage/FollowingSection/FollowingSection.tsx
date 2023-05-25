@@ -1,7 +1,7 @@
 'use client';
 
 import useSWR from 'swr';
-import FollowingUserAvatar from '@/components/FollowingSection/FollowingUserAvatar/FollowingUserAvatar';
+import FollowingUserAvatar from '@/components/pages/IndexPage/FollowingSection/FollowingUserAvatar/FollowingUserAvatar';
 import { UserMeModel } from '@/models/user';
 
 export default function FollowingSection() {

@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { getProviders } from 'next-auth/react';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import LoginAction from '@/components/LoginAction/LoginAction';
+import LoginAction from '@/components/pages/LoginPage/LoginAction/LoginAction';
 
 interface LoginPageProps {
   params: {};
