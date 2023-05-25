@@ -1,30 +1,17 @@
 import { ReactNode } from 'react';
 
-interface BasicButtonProps {
+interface LinkButtonProps {
   children: ReactNode;
-  color?: 'primary' | 'secondary' | 'accent' | 'ghost';
-  outline?: boolean;
   size?: 'xs' | 'sm' | 'lg';
   disabled?: boolean;
   block?: boolean;
-  onClick(): void;
+  onClick: () => void;
 }
 
 const PREFIX = `btn-`;
-
-export default function BasicButton({
-  children,
-  color,
-  size,
-  outline = false,
-  disabled = false,
-  block = false,
-  onClick,
-}: BasicButtonProps) {
-  let btnClassName = `btn`;
-  if (color) btnClassName += ` ${PREFIX}${color}`;
+export default function LinkButton({ children, size, block = false, disabled = false, onClick }: LinkButtonProps) {
+  let btnClassName = `btn btn-link tracking-tight no-underline`;
   if (size) btnClassName += ` ${PREFIX}${size}`;
-  if (outline) btnClassName += ` ${PREFIX}outline`;
   if (disabled) btnClassName += ` ${PREFIX}disabled`;
   if (block) btnClassName += ` ${PREFIX}block`;
 

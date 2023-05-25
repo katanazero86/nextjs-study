@@ -14,11 +14,12 @@ import Divider from '@/components/atoms/Divider/Divider';
 import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
 import Comment from '@/components/Comment/Comment';
 import { PostsModel } from '@/models/posts';
+import LinkButton from '@/components/atoms/Buttons/LinkButton/LinkButton';
 
 interface CardProps extends PostsModel {}
 
 export default function PostCard(props: CardProps) {
-  const { author, likeCount, isLike, commentCount, comments, image, _createdAt } = props;
+  const { author, likeCount, isLike, commentCount, comments, image, content, _createdAt } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCardImgClick = () => {
@@ -45,15 +46,15 @@ export default function PostCard(props: CardProps) {
           </div>
           <p>{likeCount ?? 0} like</p>
           <p className="font-semibold">{author.userName}</p>
-          <p className="truncate tracking-tight">{}</p>
+          <p className="truncate tracking-tight">{content}</p>
           {commentCount !== undefined && commentCount > 0 && (
             <div>
               <p className="truncate tracking-tight text-sm">
                 {comments![0].author.userName} {comments![0].comment}
               </p>
-              <button className="no-underline btn btn-sm btn-link text-sm tracking-tight inline-block p-0 text-left">
+              <LinkButton size="sm" onClick={() => alert('준비중')}>
                 View All {commentCount} comments
-              </button>
+              </LinkButton>
             </div>
           )}
 
