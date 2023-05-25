@@ -3,10 +3,10 @@ import ModalContainer from '@/components/Modals/ModalContainer/ModalContainer';
 import Like from '@/components/atoms/Icons/Like/Like';
 import Bookmark from '@/components/atoms/Icons/Bookmark/Bookmark';
 import DisLike from '@/components/atoms/Icons/DisLike/DisLike';
+import Divider from '@/components/atoms/Divider/Divider';
+import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
+import Comment from '@/components/Comment/Comment';
 import { PostsModel } from '@/models/posts';
-import { parseDateAgo } from '@/utils/timeago.utils';
-import TransparentButton from '@/components/atoms/Buttons/TransparentButton/TransparentButton';
-import { Divider } from '@/components/atoms/Divider/Divider';
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -52,12 +52,11 @@ export default function PostDetailModal({ isOpen, onClose, post }: PostDetailMod
           </div>
           <div className="flex flex-col justify-between px-2 pb-2">
             <p className="grow">{post.likeCount ?? 0} like</p>
-            <p className="tracking-tight text-xs text-gray-600 mt-2">{parseDateAgo(post._createdAt)}</p>
+            <DateAgoInfo createdAt={post._createdAt} />
           </div>
           <Divider />
           <div className="flex items-center w-full">
-            <input type="text" placeholder="Add a comment..." className="input input-sm w-full focus:outline-0" />
-            <TransparentButton onClick={() => alert('준비중')}>댓글 달기</TransparentButton>
+            <Comment />
           </div>
         </div>
       </>

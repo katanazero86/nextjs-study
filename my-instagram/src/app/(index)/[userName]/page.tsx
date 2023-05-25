@@ -1,6 +1,6 @@
 import UserInfo from '@/components/pages/UserPage/UserInfo/UserInfo';
 import UserPosts from '@/components/pages/UserPage/UserPosts/UserPosts';
-import { Divider } from '@/components/atoms/Divider/Divider';
+import Divider from '@/components/atoms/Divider/Divider';
 
 interface UserPageProps {
   params: {

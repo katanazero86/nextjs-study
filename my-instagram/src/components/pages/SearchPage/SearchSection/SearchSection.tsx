@@ -1,10 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { ChangeEvent, useState } from 'react';
 import useSWR from 'swr';
-import { SearchUserModel } from '@/models/user';
 import useDebounce from '@/hooks/useDebounce';
-import Link from 'next/link';
+import BasicInput from '@/components/atoms/Inputs/BasicInput/BasicInput';
+import { SearchUserModel } from '@/models/user';
 
 export default function SearchSection() {
   const [keyword, setKeyword] = useState('');
@@ -22,12 +23,12 @@ export default function SearchSection() {
 
   return (
     <section>
-      <input
-        type="text"
+      <BasicInput
+        block
+        bordered
         placeholder="Input a userName or name..."
-        className="input w-full input-bordered focus:outline-0"
-        onChange={handleKeywordChange}
         value={keyword}
+        onChange={handleKeywordChange}
       />
       {data !== undefined &&
         data.length > 0 &&

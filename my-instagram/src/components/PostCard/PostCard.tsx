@@ -9,11 +9,11 @@ import CardImg from '@/components/PostCard/CardImg/CardImg';
 import CardActions from '@/components/PostCard/CardActions/CardActions';
 import CardBody from '@/components/PostCard/CardBody/CardBody';
 import PostDetailModal from '@/components/Modals/PostDetailModal/PostDetailModal';
-import { parseDateAgo } from '@/utils/timeago.utils';
-import { PostsModel } from '@/models/posts';
 import ModalPortal from '@/components/Modals/ModalPortal';
-import TransparentButton from '@/components/atoms/Buttons/TransparentButton/TransparentButton';
-import { Divider } from '@/components/atoms/Divider/Divider';
+import Divider from '@/components/atoms/Divider/Divider';
+import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
+import Comment from '@/components/Comment/Comment';
+import { PostsModel } from '@/models/posts';
 
 interface CardProps extends PostsModel {}
 
@@ -57,12 +57,11 @@ export default function PostCard(props: CardProps) {
             </div>
           )}
 
-          <p className="tracking-tight text-xs text-gray-600">{parseDateAgo(_createdAt)}</p>
+          <DateAgoInfo createdAt={_createdAt} />
         </CardBody>
         <Divider />
         <CardActions>
-          <input type="text" placeholder="Add a comment..." className="input input-sm w-full focus:outline-0" />
-          <TransparentButton onClick={() => alert('준비중')}>댓글 달기</TransparentButton>
+          <Comment />
         </CardActions>
       </div>
       {isOpen && (
