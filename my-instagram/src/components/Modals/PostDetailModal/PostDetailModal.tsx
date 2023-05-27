@@ -7,6 +7,7 @@ import Divider from '@/components/atoms/Divider/Divider';
 import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
 import Comment from '@/components/Comment/Comment';
 import { PostsModel } from '@/models/posts';
+import { useSWRConfig } from 'swr';
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -15,6 +16,21 @@ interface PostDetailModalProps {
 }
 
 export default function PostDetailModal({ isOpen, onClose, post }: PostDetailModalProps) {
+  const { mutate } = useSWRConfig();
+  const toggleLike = (isLike: boolean) => {
+    if (isLike) {
+      fetch('api/posts', {
+        method: 'PUT',
+        body: JSON.stringify({ id: post._id, like: isLike }),
+      }).then(() => mutate('/api/posts'));
+    } else {
+      fetch('api/posts', {
+        method: 'PUT',
+        body: JSON.stringify({ id: post._id, like: isLike }),
+      }).then(() => mutate('/api/posts'));
+    }
+  };
+
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose}>
       <>
@@ -47,8 +63,12 @@ export default function PostDetailModal({ isOpen, onClose, post }: PostDetailMod
               ))}
           </div>
           <div className="flex items-center justify-between px-2 w-full">
-            {post.isLike ? <Like width={20} height={20} /> : <DisLike width={20} height={20} />}
-            <Bookmark width={20} height={20} />
+            {post.isLike ? (
+              <Like width={22} height={22} onClick={() => toggleLike(false)} />
+            ) : (
+              <DisLike width={22} height={22} onClick={() => toggleLike(true)} />
+            )}
+            <Bookmark width={22} height={22} />
           </div>
           <div className="flex flex-col justify-between px-2 pb-2">
             <p className="grow">{post.likeCount ?? 0} like</p>

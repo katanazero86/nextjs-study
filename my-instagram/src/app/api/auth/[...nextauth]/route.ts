@@ -32,9 +32,8 @@ export const authOptions: NextAuthOptions = {
 
       return true;
     },
-    async session({ session }) {
+    async session({ session, token }) {
       try {
-        console.log(session);
         const user = session?.user;
         const userName = user.email?.split('@')[0] || '';
 
@@ -42,6 +41,7 @@ export const authOptions: NextAuthOptions = {
           session.user = {
             ...user,
             userName,
+            id: token.id as string,
           };
         }
       } catch (err) {
@@ -49,6 +49,10 @@ export const authOptions: NextAuthOptions = {
       }
 
       return session;
+    },
+    async jwt({ token, user }) {
+      if (user) token.id = user.id;
+      return token;
     },
   },
   pages: {

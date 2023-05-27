@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, MouseEvent } from 'react';
+import { useSWRConfig } from 'swr';
 import Like from '@/components/atoms/Icons/Like/Like';
 import DisLike from '@/components/atoms/Icons/DisLike/DisLike';
 import Bookmark from '@/components/atoms/Icons/Bookmark/Bookmark';
@@ -13,13 +14,13 @@ import ModalPortal from '@/components/Modals/ModalPortal';
 import Divider from '@/components/atoms/Divider/Divider';
 import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
 import Comment from '@/components/Comment/Comment';
-import { PostsModel } from '@/models/posts';
 import LinkButton from '@/components/atoms/Buttons/LinkButton/LinkButton';
+import { PostsModel } from '@/models/posts';
 
 interface CardProps extends PostsModel {}
 
 export default function PostCard(props: CardProps) {
-  const { author, likeCount, isLike, commentCount, comments, image, content, _createdAt } = props;
+  const { _id, author, likeCount, isLike, commentCount, comments, image, content, _createdAt } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCardImgClick = () => {
@@ -33,6 +34,21 @@ export default function PostCard(props: CardProps) {
     if (e.target === e.currentTarget) setIsOpen(false);
   };
 
+  const { mutate } = useSWRConfig();
+  const toggleLike = (isLike: boolean) => {
+    if (isLike) {
+      fetch('api/posts', {
+        method: 'PUT',
+        body: JSON.stringify({ id: _id, like: isLike }),
+      }).then(() => mutate('/api/posts'));
+    } else {
+      fetch('api/posts', {
+        method: 'PUT',
+        body: JSON.stringify({ id: _id, like: isLike }),
+      }).then(() => mutate('/api/posts'));
+    }
+  };
+
   return (
     <>
       <div className="card w-full bg-base-100 shadow-xl my-4">
@@ -40,9 +56,13 @@ export default function PostCard(props: CardProps) {
         <CardBody>
           <div className="flex items-center justify-between">
             {/*TODO: 좋아요, 즐겨찾기 toggle*/}
-            {isLike ? <Like width={24} height={24} /> : <DisLike width={24} height={24} />}
-            {/*<Bookmark width={24} height={24} />*/}
-            <UnBookmark width={24} height={24} />
+            {isLike ? (
+              <Like width={22} height={22} onClick={() => toggleLike(false)} />
+            ) : (
+              <DisLike width={22} height={22} onClick={() => toggleLike(true)} />
+            )}
+            {/*<Bookmark width={22} height={22} />*/}
+            <UnBookmark width={22} height={22} />
           </div>
           <p>{likeCount ?? 0} like</p>
           <p className="font-semibold">{author.userName}</p>
