@@ -11,7 +11,7 @@ export default function PostsSection() {
     <section className="py-2">
       {posts !== undefined &&
         posts.length > 0 &&
-        posts.map((post) => <PostCard key={post._id} {...post} image={urlFor(post.image)} />)}
+        posts.map((post) => <PostCard key={post._id} {...post} imgUrl={urlFor(post.image)} />)}
     </section>
   );
 }

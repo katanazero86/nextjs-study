@@ -9,6 +9,7 @@ import Comment from '@/components/Comment/Comment';
 import { PostsModel } from '@/models/posts';
 import { useSWRConfig } from 'swr';
 import usePosts from '@/hooks/usePosts';
+import { urlFor } from '@/sanity';
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -19,14 +20,14 @@ interface PostDetailModalProps {
 export default function PostDetailModal({ isOpen, onClose, post }: PostDetailModalProps) {
   const { updateLike } = usePosts();
   const toggleLike = (isLike: boolean) => {
-    updateLike(post._id, isLike);
+    updateLike(post, isLike);
   };
 
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose}>
       <>
         <div className="flex flex-wrap items-center">
-          <img className="object-cover w-full max-h-96" src={post.image} alt="" />
+          <img className="object-cover w-full max-h-96" src={urlFor(post.image)} alt="image" />
           <div className="flex flex-row items-center min-w-0 px-2 py-4 w-full">
             <div className="avatar mx-1.5 cursor-pointer">
               <div className="w-10 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-2">

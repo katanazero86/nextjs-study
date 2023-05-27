@@ -18,12 +18,14 @@ import LinkButton from '@/components/atoms/Buttons/LinkButton/LinkButton';
 import { PostsModel } from '@/models/posts';
 import usePosts from '@/hooks/usePosts';
 
-interface CardProps extends PostsModel {}
+interface CardProps extends PostsModel {
+  imgUrl: string;
+}
 
 export default function PostCard(props: CardProps) {
   const { updateLike } = usePosts();
 
-  const { _id, author, likeCount, isLike, commentCount, comments, image, content, _createdAt } = props;
+  const { author, likeCount, isLike, commentCount, comments, content, _createdAt, imgUrl } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCardImgClick = () => {
@@ -37,13 +39,13 @@ export default function PostCard(props: CardProps) {
     if (e.target === e.currentTarget) setIsOpen(false);
   };
   const toggleLike = (isLike: boolean) => {
-    updateLike(_id, isLike);
+    updateLike(props, isLike);
   };
 
   return (
     <>
       <div className="card w-full bg-base-100 shadow-xl my-4">
-        <CardImg imgUrl={image} onClick={handleCardImgClick} />
+        <CardImg imgUrl={imgUrl} onClick={handleCardImgClick} />
         <CardBody>
           <div className="flex items-center justify-between">
             {/*TODO: 좋아요, 즐겨찾기 toggle*/}
