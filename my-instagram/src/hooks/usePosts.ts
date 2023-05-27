@@ -6,6 +6,9 @@ export default function usePosts() {
 
   const updateLike = (targetPost: PostsModel, isLike: boolean) => {
     const newPost = { ...targetPost, isLike };
+    if (newPost.likeCount === undefined) newPost.likeCount = 0;
+    if (isLike) newPost.likeCount++;
+    if (!isLike) newPost.likeCount--;
     const newPosts = posts?.map((post) => (post._id === targetPost._id ? newPost : post));
 
     return mutate(
