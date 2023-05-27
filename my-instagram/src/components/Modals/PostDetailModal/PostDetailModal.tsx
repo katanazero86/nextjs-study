@@ -8,6 +8,7 @@ import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
 import Comment from '@/components/Comment/Comment';
 import { PostsModel } from '@/models/posts';
 import { useSWRConfig } from 'swr';
+import usePosts from '@/hooks/usePosts';
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -16,19 +17,9 @@ interface PostDetailModalProps {
 }
 
 export default function PostDetailModal({ isOpen, onClose, post }: PostDetailModalProps) {
-  const { mutate } = useSWRConfig();
+  const { updateLike } = usePosts();
   const toggleLike = (isLike: boolean) => {
-    if (isLike) {
-      fetch('api/posts', {
-        method: 'PUT',
-        body: JSON.stringify({ id: post._id, like: isLike }),
-      }).then(() => mutate('/api/posts'));
-    } else {
-      fetch('api/posts', {
-        method: 'PUT',
-        body: JSON.stringify({ id: post._id, like: isLike }),
-      }).then(() => mutate('/api/posts'));
-    }
+    updateLike(post._id, isLike);
   };
 
   return (

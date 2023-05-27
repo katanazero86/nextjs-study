@@ -1,12 +1,11 @@
 'use client';
 
-import useSWR from 'swr';
 import PostCard from '@/components/PostCard/PostCard';
-import { PostsModel } from '@/models/posts';
 import { urlFor } from '@/sanity';
+import usePosts from '@/hooks/usePosts';
 
 export default function PostsSection() {
-  const { data: posts, isLoading, error } = useSWR<PostsModel[]>('/api/posts');
+  const { posts, isLoading, error } = usePosts();
 
   return (
     <section className="py-2">

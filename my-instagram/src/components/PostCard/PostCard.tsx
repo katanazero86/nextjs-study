@@ -16,10 +16,13 @@ import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
 import Comment from '@/components/Comment/Comment';
 import LinkButton from '@/components/atoms/Buttons/LinkButton/LinkButton';
 import { PostsModel } from '@/models/posts';
+import usePosts from '@/hooks/usePosts';
 
 interface CardProps extends PostsModel {}
 
 export default function PostCard(props: CardProps) {
+  const { updateLike } = usePosts();
+
   const { _id, author, likeCount, isLike, commentCount, comments, image, content, _createdAt } = props;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,20 +36,8 @@ export default function PostCard(props: CardProps) {
   const closeModal = (e: MouseEvent) => {
     if (e.target === e.currentTarget) setIsOpen(false);
   };
-
-  const { mutate } = useSWRConfig();
   const toggleLike = (isLike: boolean) => {
-    if (isLike) {
-      fetch('api/posts', {
-        method: 'PUT',
-        body: JSON.stringify({ id: _id, like: isLike }),
-      }).then(() => mutate('/api/posts'));
-    } else {
-      fetch('api/posts', {
-        method: 'PUT',
-        body: JSON.stringify({ id: _id, like: isLike }),
-      }).then(() => mutate('/api/posts'));
-    }
+    updateLike(_id, isLike);
   };
 
   return (
