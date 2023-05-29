@@ -10,8 +10,8 @@ interface FollowProps {
   user: UserModel;
 }
 export default function Follow({ user }: FollowProps) {
-  const { userName } = user;
-  const { me, meError, targetUser, profileError, callUpdateFollow, isUpdateFollowLoading } = useUsers(userName);
+  const { userName, _id } = user;
+  const { me, meError, callUpdateFollow, isUpdateFollowLoading } = useUsers(userName);
 
   const isFollowing = me && (me?.following as SimpleUserType[]).find((item) => item.userName === userName);
 
@@ -20,7 +20,7 @@ export default function Follow({ user }: FollowProps) {
   const [isFetching, setIsFetching] = useState(false);
 
   const toggleFollow = async (isFollow: boolean) => {
-    await callUpdateFollow({ targetId: targetUser._id, isFollow });
+    await callUpdateFollow({ targetId: _id, isFollow });
     startTransition(() => {
       router.refresh();
     });
