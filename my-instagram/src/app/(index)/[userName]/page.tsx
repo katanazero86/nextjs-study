@@ -1,6 +1,7 @@
 import UserInfo from '@/components/pages/UserPage/UserInfo/UserInfo';
 import UserPosts from '@/components/pages/UserPage/UserPosts/UserPosts';
 import Divider from '@/components/atoms/Divider/Divider';
+import { sanityClient } from '@/sanity';
 
 interface UserPageProps {
   params: {
@@ -8,13 +9,15 @@ interface UserPageProps {
     searchParams: {};
   };
 }
-export default function UserPage(props: UserPageProps) {
+export default async function UserPage(props: UserPageProps) {
   const { userName } = props.params;
+  const user = await sanityClient.sanityUser.findUserForProfileByUserName(userName);
+  console.log(user);
 
   return (
     <div>
       <Divider />
-      <UserInfo userName={userName} />
+      <UserInfo user={user} />
       <Divider />
       <UserPosts userName={userName} />
     </div>

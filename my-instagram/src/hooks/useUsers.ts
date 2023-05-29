@@ -1,9 +1,9 @@
 import useSWR, { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
-import { UserMeModel } from '@/models/user';
+import { UserModel } from '@/models/user';
 
 export default function useUsers(userName: string) {
-  const { data: currentUser, error: meError } = useSWR<UserMeModel>('/api/me');
+  const { data: me, error: meError } = useSWR<UserModel>('/api/me');
   const { data: targetUser, error: profileError } = useSWR(`/api/user/profile?userName=${userName}`);
 
   const updateFollow = async (url: string, { arg }: { arg: { targetId: string; isFollow: boolean } }) => {
@@ -24,7 +24,7 @@ export default function useUsers(userName: string) {
   );
 
   return {
-    currentUser,
+    me,
     targetUser,
     meError,
     profileError,

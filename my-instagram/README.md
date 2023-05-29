@@ -160,6 +160,7 @@ rollbackOnError: 에러가 발생하면, optimisticData 로 업데이트 한 부
 -> transaction() 으로 묶어서 처리
 
 Next.js 에서 제공해주는 mutating data 로 렌더링 갱신이 가능
+router.refresh() 해보는거 구현해봄
 
 ```
 

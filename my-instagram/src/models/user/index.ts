@@ -1,3 +1,4 @@
+export type SimpleUserType = Pick<UserModel, 'userName' | 'userImage'>;
 export interface UserModel {
   _type: 'user';
   _id: string;
@@ -5,14 +6,10 @@ export interface UserModel {
   name: string;
   userImage: string;
   userName: string;
-}
-
-type SimpleUserType = Pick<UserModel, 'userName' | 'userImage'>;
-
-export interface UserMeModel extends UserModel {
-  following: SimpleUserType[];
-  followers: SimpleUserType[];
+  following?: SimpleUserType[] | number;
+  followers?: SimpleUserType[] | number;
   bookmarks: string[];
+  posts?: number;
 }
 
 export interface SearchUserModel {
