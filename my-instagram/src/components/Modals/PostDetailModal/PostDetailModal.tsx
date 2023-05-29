@@ -1,16 +1,16 @@
 import { MouseEvent } from 'react';
+import Link from 'next/link';
 import ModalContainer from '@/components/Modals/ModalContainer/ModalContainer';
-import Like from '@/components/atoms/Icons/Like/Like';
 import Bookmark from '@/components/atoms/Icons/Bookmark/Bookmark';
+import UnBookmark from '@/components/atoms/Icons/UnBookmark/UnBookmark';
+import Like from '@/components/atoms/Icons/Like/Like';
 import DisLike from '@/components/atoms/Icons/DisLike/DisLike';
 import Divider from '@/components/atoms/Divider/Divider';
 import DateAgoInfo from '@/components/atoms/DateAgoInfo/DateAgoInfo';
 import Comment from '@/components/Comment/Comment';
 import { PostsModel } from '@/models/posts';
-import { useSWRConfig } from 'swr';
 import usePosts from '@/hooks/usePosts';
 import { urlFor } from '@/sanity';
-import UnBookmark from '@/components/atoms/Icons/UnBookmark/UnBookmark';
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -33,29 +33,31 @@ export default function PostDetailModal({ isOpen, onClose, post }: PostDetailMod
       <>
         <div className="flex flex-wrap items-center">
           <img className="object-cover w-full max-h-96" src={urlFor(post.image)} alt="image" />
-          <div className="flex flex-row items-center min-w-0 px-2 py-4 w-full">
-            <div className="avatar mx-1.5 cursor-pointer">
-              <div className="w-10 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-2">
-                <img src={post.author.userImage} alt="user-img" />
+          <Link href={`/${post.author.userName}`}>
+            <div className="flex flex-row items-center min-w-0 px-2 py-4 w-full">
+              <div className="avatar mx-1.5 cursor-pointer">
+                <div className="w-10 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-2">
+                  <img src={post.author.userImage} alt="user" />
+                </div>
               </div>
+              <p className="pl-3 font-semibold truncate tracking-tight">{post.author.userName}</p>
             </div>
-            <p className="pl-3 font-semibold truncate tracking-tight">{post.author.userName}</p>
-          </div>
+          </Link>
           <Divider />
           <p className="font-normal text-gray-700 tracking-tight p-2 w-full">{post.content}</p>
-          <div className="flex items-center px-2 mb-4 min-w-0">
+          <div className="flex flex-wrap items-center px-2 mb-4 min-w-0">
             {post.comments !== undefined &&
               post.comments !== null &&
               post.comments.length > 0 &&
               post.comments.map((comment, index) => (
-                <div className="flex items-center w-full" key={index}>
+                <div className="flex items-center w-full py-2" key={index}>
                   <div className="avatar mx-1.5 cursor-pointer">
-                    <div className="w-10 rounded-full ring-2 ring-primary ring-offset-base-100 ring-offset-2">
+                    <div className="w-8 rounded-full ring-2 ring-offset-base-100 ring-offset-2">
                       <img src={comment.author.userImage} alt="user-img" />
                     </div>
                   </div>
-                  <p className="pl-3 tracking-tight font-semibold">{comment.author.userName}</p>
-                  <p className="pl-3 tracking-tight truncate">{comment.comment}</p>
+                  <p className="pl-1 tracking-tight font-semibold text-sm">{comment.author.userName}</p>
+                  <p className="pl-1 tracking-tight truncate text-sm">{comment.comment}</p>
                 </div>
               ))}
           </div>
@@ -77,7 +79,7 @@ export default function PostDetailModal({ isOpen, onClose, post }: PostDetailMod
           </div>
           <Divider />
           <div className="flex items-center w-full">
-            <Comment />
+            <Comment post={{ ...post }} />
           </div>
         </div>
       </>

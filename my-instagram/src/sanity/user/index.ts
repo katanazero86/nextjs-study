@@ -46,4 +46,34 @@ export const sanityUser = {
   async findSavedOf(targetUserName: string) {
     return await client.fetch(FIND_SAVED_OF`${targetUserName}`);
   },
+
+  async updateFollow(myId: string, targetId: string) {
+    return await client
+      .transaction()
+      .patch(myId, (user) =>
+        user.setIfMissing({ following: [] }).append('following', [
+          {
+            _ref: targetId,
+            _type: 'reference',
+          },
+        ]),
+      )
+      .patch(targetId, (user) =>
+        user.setIfMissing({ followers: [] }).append('followers', [
+          {
+            _ref: myId,
+            _type: 'reference',
+          },
+        ]),
+      )
+      .commit({ autoGenerateArrayKeys: true });
+  },
+
+  async updateUnFollow(myId: string, targetId: string) {
+    return await client
+      .transaction()
+      .patch(myId, (user) => user.unset([`following[_ref=="${targetId}"]`]))
+      .patch(targetId, (user) => user.unset([`followers[_ref=="${myId}"]`]))
+      .commit();
+  },
 };

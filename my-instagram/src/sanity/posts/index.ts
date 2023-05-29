@@ -36,12 +36,29 @@ export const sanityPosts = {
           _type: 'reference',
         },
       ])
-      .commit();
+      .commit({ autoGenerateArrayKeys: true });
   },
   async updateUnBookmarkOfPost(targetPostId: string, targetUserId: string) {
     return await client
       .patch(targetUserId)
       .unset([`bookmarks[_ref == "${targetPostId}"]`])
       .commit();
+  },
+  async createCommentOfPost(targetPostId: string, targetComment: string, targetUserId: string) {
+    return await client
+      .patch(targetPostId)
+      .setIfMissing({
+        comments: [],
+      })
+      .append('comments', [
+        {
+          comment: targetComment,
+          author: {
+            _ref: targetUserId,
+            _type: 'reference',
+          },
+        },
+      ])
+      .commit({ autoGenerateArrayKeys: true });
   },
 };

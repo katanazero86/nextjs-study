@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 
 interface TransparentButtonProps {
   children: ReactNode;
-  className?: string;
   outline?: boolean;
   size?: 'xs' | 'sm' | 'lg';
   disabled?: boolean;
@@ -14,7 +13,6 @@ const PREFIX = `btn-`;
 
 export default function TransparentButton({
   children,
-  className = '',
   size,
   outline = false,
   disabled = false,
@@ -24,7 +22,7 @@ export default function TransparentButton({
   let btnClassName = `btn btn-ghost hover:bg-transparent text-indigo-500`;
   if (size) btnClassName += ` ${PREFIX}${size}`;
   if (outline) btnClassName += ` ${PREFIX}outline`;
-  if (disabled) btnClassName += ` ${PREFIX}disabled`;
+  if (disabled) btnClassName += ` cursor-not-allowed pointer-events-none`;
   if (block) btnClassName += ` ${PREFIX}block`;
 
   return (

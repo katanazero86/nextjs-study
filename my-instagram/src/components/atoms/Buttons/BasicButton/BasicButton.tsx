@@ -7,6 +7,7 @@ interface BasicButtonProps {
   size?: 'xs' | 'sm' | 'lg';
   disabled?: boolean;
   block?: boolean;
+  loading?: boolean;
   onClick(): void;
 }
 
@@ -19,6 +20,7 @@ export default function BasicButton({
   outline = false,
   disabled = false,
   block = false,
+  loading = false,
   onClick,
 }: BasicButtonProps) {
   let btnClassName = `btn`;
@@ -26,6 +28,7 @@ export default function BasicButton({
   if (size) btnClassName += ` ${PREFIX}${size}`;
   if (outline) btnClassName += ` ${PREFIX}outline`;
   if (disabled) btnClassName += ` ${PREFIX}disabled`;
+  if (loading) btnClassName += ` loading`;
   if (block) btnClassName += ` ${PREFIX}block`;
 
   return (

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, MouseEvent } from 'react';
-import { useSWRConfig } from 'swr';
 import Like from '@/components/atoms/Icons/Like/Like';
 import DisLike from '@/components/atoms/Icons/DisLike/DisLike';
 import Bookmark from '@/components/atoms/Icons/Bookmark/Bookmark';
@@ -68,10 +67,7 @@ export default function PostCard(props: CardProps) {
           <p className="truncate tracking-tight">{content}</p>
           {commentCount !== undefined && commentCount > 0 && (
             <div>
-              <p className="truncate tracking-tight text-sm">
-                {comments![0].author.userName} {comments![0].comment}
-              </p>
-              <LinkButton size="sm" onClick={() => alert('준비중')}>
+              <LinkButton size="sm" onClick={openModal}>
                 View All {commentCount} comments
               </LinkButton>
             </div>
@@ -81,7 +77,7 @@ export default function PostCard(props: CardProps) {
         </CardBody>
         <Divider />
         <CardActions>
-          <Comment />
+          <Comment post={{ ...props }} />
         </CardActions>
       </div>
       {isOpen && (

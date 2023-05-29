@@ -150,6 +150,17 @@ rollbackOnError: 에러가 발생하면, optimisticData 로 업데이트 한 부
 - bookmark toggle 기능 구현
 - GROQ 변경 및 API 라우팅 변경
 
+2023.05.31
+- 코멘트 기능 구현
+- 팔로우 기능 구현
+
+팔로우 기능 같은 경우에는 변화가 2가지가 일어남
+팔로우를 하면, 나 following 에 해당 유저 추가
+해당 유저 followers 에 내가 추가
+-> transaction() 으로 묶어서 처리
+
+Next.js 에서 제공해주는 mutating data 로 렌더링 갱신이 가능
+
 ```
 
 ![img.png](imgs/img.png)
