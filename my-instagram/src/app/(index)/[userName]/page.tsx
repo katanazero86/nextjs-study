@@ -12,7 +12,6 @@ interface UserPageProps {
 export default async function UserPage(props: UserPageProps) {
   const { userName } = props.params;
   const user = await sanityClient.sanityUser.findUserForProfileByUserName(userName);
-  console.log(user);
 
   return (
     <div>
