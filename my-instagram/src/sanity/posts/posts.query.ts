@@ -3,12 +3,13 @@ export const FIND_POSTS_QUERY = (texts: TemplateStringsArray, targetUserName: st
     ...,
     author->{userName, userImage},
     "likeCount": count(likes[]),
-    "isLike": length(likes[@->userName == "${targetUserName}"]) > 0,
+    "isLike": count(likes[@->userName == "${targetUserName}"]) > 0,
     "commentCount": count(comments[]),
     "comments": comments[]{
       ...,
       author->{userName, userImage},
     },
-    "image": image.asset->
+    "image": image.asset->,
+    "isBookmark": count(*[_type == "user" && userName == "${targetUserName}" && ^._id in bookmarks[]._ref]) > 0,
     }`;
 };

@@ -146,6 +146,10 @@ populateCache: 반환된 값으로 캐시에 기록
 revalidate: 업데이트가 완료되면 유효성을 다시 검사(리페칭)
 rollbackOnError: 에러가 발생하면, optimisticData 로 업데이트 한 부분을 이전으로 되돌림
 
+2023.05.29
+- bookmark toggle 기능 구현
+- GROQ 변경 및 API 라우팅 변경
+
 ```
 
 ![img.png](imgs/img.png)

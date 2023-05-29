@@ -23,9 +23,9 @@ interface CardProps extends PostsModel {
 }
 
 export default function PostCard(props: CardProps) {
-  const { updateLike } = usePosts();
+  const { updateLike, updateBookmark } = usePosts();
 
-  const { author, likeCount, isLike, commentCount, comments, content, _createdAt, imgUrl } = props;
+  const { author, likeCount, isLike, isBookmark, commentCount, comments, content, _createdAt, imgUrl } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const handleCardImgClick = () => {
@@ -42,20 +42,26 @@ export default function PostCard(props: CardProps) {
     updateLike(props, isLike);
   };
 
+  const toggleBookmark = (isBookmark: boolean) => {
+    updateBookmark(props, isBookmark);
+  };
+
   return (
     <>
       <div className="card w-full bg-base-100 shadow-xl my-4">
         <CardImg imgUrl={imgUrl} onClick={handleCardImgClick} />
         <CardBody>
           <div className="flex items-center justify-between">
-            {/*TODO: 좋아요, 즐겨찾기 toggle*/}
             {isLike ? (
               <Like width={22} height={22} onClick={() => toggleLike(false)} />
             ) : (
               <DisLike width={22} height={22} onClick={() => toggleLike(true)} />
             )}
-            {/*<Bookmark width={22} height={22} />*/}
-            <UnBookmark width={22} height={22} />
+            {isBookmark ? (
+              <Bookmark width={22} height={22} onClick={() => toggleBookmark(false)} />
+            ) : (
+              <UnBookmark width={22} height={22} onClick={() => toggleBookmark(true)} />
+            )}
           </div>
           <p>{likeCount ?? 0} like</p>
           <p className="font-semibold">{author.userName}</p>

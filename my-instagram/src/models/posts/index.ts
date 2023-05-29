@@ -17,7 +17,8 @@ export interface PostsModel {
       }[]
     | null;
   commentCount?: number;
-  isLike?: boolean | null;
   image: string;
   content: string;
+  isLike?: boolean | null;
+  isBookmark?: boolean | null;
 }

@@ -26,4 +26,22 @@ export const sanityPosts = {
       .unset([`likes[_ref == "${targetUserId}"]`])
       .commit();
   },
+  async updateBookmarkOfPost(targetPostId: string, targetUserId: string) {
+    return await client
+      .patch(targetUserId)
+      .setIfMissing({ bookmarks: [] })
+      .append('bookmarks', [
+        {
+          _ref: targetPostId,
+          _type: 'reference',
+        },
+      ])
+      .commit();
+  },
+  async updateUnBookmarkOfPost(targetPostId: string, targetUserId: string) {
+    return await client
+      .patch(targetUserId)
+      .unset([`bookmarks[_ref == "${targetPostId}"]`])
+      .commit();
+  },
 };

@@ -10,6 +10,7 @@ import { PostsModel } from '@/models/posts';
 import { useSWRConfig } from 'swr';
 import usePosts from '@/hooks/usePosts';
 import { urlFor } from '@/sanity';
+import UnBookmark from '@/components/atoms/Icons/UnBookmark/UnBookmark';
 
 interface PostDetailModalProps {
   isOpen: boolean;
@@ -18,9 +19,13 @@ interface PostDetailModalProps {
 }
 
 export default function PostDetailModal({ isOpen, onClose, post }: PostDetailModalProps) {
-  const { updateLike } = usePosts();
+  const { updateLike, updateBookmark } = usePosts();
   const toggleLike = (isLike: boolean) => {
     updateLike(post, isLike);
+  };
+
+  const toggleBookmark = (isBookmark: boolean) => {
+    updateBookmark(post, isBookmark);
   };
 
   return (
@@ -60,7 +65,11 @@ export default function PostDetailModal({ isOpen, onClose, post }: PostDetailMod
             ) : (
               <DisLike width={22} height={22} onClick={() => toggleLike(true)} />
             )}
-            <Bookmark width={22} height={22} />
+            {post.isBookmark ? (
+              <Bookmark width={22} height={22} onClick={() => toggleBookmark(false)} />
+            ) : (
+              <UnBookmark width={22} height={22} onClick={() => toggleBookmark(true)} />
+            )}
           </div>
           <div className="flex flex-col justify-between px-2 pb-2">
             <p className="grow">{post.likeCount ?? 0} like</p>
