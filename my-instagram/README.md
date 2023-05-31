@@ -166,6 +166,7 @@ router.refresh() 해보는거 구현해봄
 - 버그 찾아서 개선
 - 새 포스트 작성 기능 구현
 - API 라우터 핸들러마다 중복되는 인증 코드 부분 withSessionUser 코드로 분리
+- key 값 .env.local 로 빼기
 
 ```
 
