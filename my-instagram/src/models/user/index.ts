@@ -8,7 +8,7 @@ export interface UserModel {
   userName: string;
   following?: SimpleUserType[] | number;
   followers?: SimpleUserType[] | number;
-  bookmarks: string[];
+  bookmarks?: string[];
   posts?: number;
 }
 
