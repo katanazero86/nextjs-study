@@ -8,16 +8,18 @@ import ModalPortal from '@/components/Modals/ModalPortal';
 import PostDetailModal from '@/components/Modals/PostDetailModal/PostDetailModal';
 import { PostsModel } from '@/models/posts';
 import { urlFor } from '@/sanity';
+import usePosts from '@/hooks/usePosts';
 
 interface PostImageProps {
   post: PostsModel;
+  apiUrl: string;
 }
 
 interface UserPostsProps {
   userName: string;
 }
 
-const PostImage = ({ post }: PostImageProps) => {
+const PostImage = ({ post, apiUrl }: PostImageProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -31,12 +33,12 @@ const PostImage = ({ post }: PostImageProps) => {
     <>
       <div className="card bg-base-100 shadow-xl cursor-pointer">
         <figure className="rounded" onClick={openModal}>
-          <img src={urlFor(post.image)} alt="Shoes" />
+          <img className="object-cover w-full" src={urlFor(post.image)} alt="image" />
         </figure>
       </div>
       {isOpen && (
         <ModalPortal>
-          <PostDetailModal isOpen={isOpen} onClose={closeModal} post={{ ...post, image: urlFor(post.image) }} />
+          <PostDetailModal isOpen={isOpen} onClose={closeModal} post={post} apiUrl={apiUrl} />
         </ModalPortal>
       )}
     </>
@@ -46,7 +48,7 @@ const PostImage = ({ post }: PostImageProps) => {
 const TAB_ITEMS = ['posts', 'saved', 'liked'];
 export default function UserPosts({ userName }: UserPostsProps) {
   const [tab, setTab] = useState('posts');
-  const { data, error } = useSWR(`/api/user/${userName}/${tab}`);
+  const { posts, error } = usePosts(`/api/user/${userName}/${tab}`);
 
   return (
     <div className="mt-2">
@@ -58,7 +60,9 @@ export default function UserPosts({ userName }: UserPostsProps) {
         ))}
       </Tabs>
       <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
-        {data !== undefined && data.length > 0 && data.map((d: any) => <PostImage post={d} key={d._id} />)}
+        {posts !== undefined &&
+          posts.length > 0 &&
+          posts.map((post: any) => <PostImage post={post} key={post._id} apiUrl={`/api/user/${userName}/${tab}`} />)}
       </div>
     </div>
   );

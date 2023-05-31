@@ -28,14 +28,16 @@ export default function Follow({ user }: FollowProps) {
 
   return (
     <>
-      <BasicButton
-        loading={isUpdateFollowLoading}
-        size="sm"
-        color="primary"
-        onClick={() => (isFollowing ? toggleFollow(false) : toggleFollow(true))}
-      >
-        {isFollowing ? 'Unfollow' : 'Follow'}
-      </BasicButton>
+      {me !== undefined && userName !== me?.userName && (
+        <BasicButton
+          loading={isUpdateFollowLoading}
+          size="sm"
+          color="primary"
+          onClick={() => (isFollowing ? toggleFollow(false) : toggleFollow(true))}
+        >
+          {isFollowing ? 'Unfollow' : 'Follow'}
+        </BasicButton>
+      )}
     </>
   );
 }

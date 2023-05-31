@@ -1,8 +1,8 @@
+import '../globals.css';
 import { ReactNode } from 'react';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import '../globals.css';
 import { Inter } from 'next/font/google';
 import Header from '@/components/Header/Header';
 import AuthContext from '@/context/AuthContext';

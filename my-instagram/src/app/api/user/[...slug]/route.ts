@@ -13,7 +13,6 @@ export async function GET(request: NextRequest, context: Context) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   if (!user) return new Response('Authentication Error', { status: 401 });
-
   const { slug } = context.params;
   if (!slug || !Array.isArray(slug) || slug.length < 2) {
     return new NextResponse('Bad Request', { status: 400 });

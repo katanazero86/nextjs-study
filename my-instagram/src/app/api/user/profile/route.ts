@@ -7,7 +7,6 @@ export async function GET(request: NextRequest) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   if (!user) return new Response('Authentication Error', { status: 401 });
-
   const userName = request.nextUrl.searchParams.get('userName') ?? '';
 
   return sanityClient.sanityUser.findUserForProfileByUserName(userName).then((result) => NextResponse.json(result));

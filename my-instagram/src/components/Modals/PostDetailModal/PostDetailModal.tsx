@@ -16,10 +16,11 @@ interface PostDetailModalProps {
   isOpen: boolean;
   onClose: (e: MouseEvent) => void;
   post: PostsModel;
+  apiUrl?: string;
 }
 
-export default function PostDetailModal({ isOpen, onClose, post }: PostDetailModalProps) {
-  const { updateLike, updateBookmark } = usePosts();
+export default function PostDetailModal({ isOpen, onClose, post, apiUrl }: PostDetailModalProps) {
+  const { updateLike, updateBookmark } = usePosts(apiUrl);
   const toggleLike = (isLike: boolean) => {
     updateLike(post, isLike);
   };

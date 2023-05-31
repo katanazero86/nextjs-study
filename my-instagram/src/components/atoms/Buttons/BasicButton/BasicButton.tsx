@@ -32,7 +32,7 @@ export default function BasicButton({
   if (block) btnClassName += ` ${PREFIX}block`;
 
   return (
-    <button className={btnClassName.trim()} onClick={onClick}>
+    <button className={btnClassName} onClick={onClick}>
       {children}
     </button>
   );

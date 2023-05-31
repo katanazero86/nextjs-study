@@ -1,15 +1,19 @@
 import useSWR from 'swr';
 import { PostsModel } from '@/models/posts';
 
-export default function usePosts() {
-  const { data: posts, isLoading, error, mutate } = useSWR<PostsModel[]>('/api/posts');
+export default function usePosts(apiUrl = '/api/posts') {
+  const { data: posts, isLoading, error, mutate } = useSWR<PostsModel[]>(apiUrl);
 
   const updateLike = (targetPost: PostsModel, isLike: boolean) => {
     const newPost = { ...targetPost, isLike };
-    if (newPost.likeCount === undefined) newPost.likeCount = 0;
-    if (isLike) newPost.likeCount++;
-    if (!isLike) newPost.likeCount--;
+    if (newPost.likeCount === undefined) {
+      newPost.likeCount = 0;
+    } else {
+      if (isLike) newPost.likeCount += 1;
+      if (!isLike) newPost.likeCount -= 1;
+    }
     const newPosts = posts?.map((post) => (post._id === targetPost._id ? newPost : post));
+    console.log(newPosts);
 
     return mutate(
       fetch('api/posts/like', {

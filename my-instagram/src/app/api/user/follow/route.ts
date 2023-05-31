@@ -6,9 +6,7 @@ import { sanityClient } from '@/sanity';
 export async function PUT(request: NextRequest) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
-
   if (!user) return new Response('Authentication Error', { status: 401 });
-
   const { targetId, isFollow } = await request.json();
   if (!targetId || isFollow === undefined) return new Response('Bad Request', { status: 400 });
 

@@ -33,12 +33,14 @@ export const FIND_POSTS_OF = (texts: TemplateStringsArray, targetUserName: strin
        ...,
        author->{userName, userImage},
       "likeCount": count(likes[]),
-      "isLike": length(likes[@->userName == "${targetUserName}"]) > 0,
+      "isLike": count(likes[@->userName == "${targetUserName}"]) > 0,
       "commentCount": count(comments[]),
+      "image": image.asset->,
       "comments": comments[]{
         ...,
         author->{userName, userImage},
       },
+      "isBookmark": count(*[_type == "user" && userName == "${targetUserName}" && ^._id in bookmarks[]._ref]) > 0,
       }`;
 };
 
@@ -47,13 +49,14 @@ export const FIND_LIKED_OF = (texts: TemplateStringsArray, targetUserName: strin
        ...,
        author->{userName, userImage},
       "likeCount": count(likes[]),
-      "isLike": length(likes[@->userName == "${targetUserName}"]) > 0,
+      "isLike": count(likes[@->userName == "${targetUserName}"]) > 0,
       "commentCount": count(comments[]),
+      "image": image.asset->,
       "comments": comments[]{
         ...,
         author->{userName, userImage},
     },
-    
+    "isBookmark": count(*[_type == "user" && userName == "${targetUserName}" && ^._id in bookmarks[]._ref]) > 0,
       }`;
 };
 
@@ -62,11 +65,13 @@ export const FIND_SAVED_OF = (texts: TemplateStringsArray, targetUserName: strin
        ...,
        author->{userName, userImage},
       "likeCount": count(likes[]),
-      "isLike": length(likes[@->userName == "${targetUserName}"]) > 0,
+      "isLike": count(likes[@->userName == "${targetUserName}"]) > 0,
       "commentCount": count(comments[]),
+      "image": image.asset->,
       "comments": comments[]{
       ...,
       author->{userName, userImage},
     },
+    "isBookmark": count(*[_type == "user" && userName == "${targetUserName}" && ^._id in bookmarks[]._ref]) > 0,
       }`;
 };

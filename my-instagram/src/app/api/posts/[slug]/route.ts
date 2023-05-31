@@ -12,9 +12,7 @@ interface Context {
 export async function PUT(request: NextRequest, context: Context) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
-
   if (!user) return new Response('Authentication Error', { status: 401 });
-
   if (context.params.slug === 'like') {
     const { id, like } = await request.json();
     if (!id || like === undefined) return new Response('Bad Request', { status: 400 });
