@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { sanityClient } from '@/sanity';
 
-// google aAuth 관련 키 발급 받아야함.
+// google oAuth 관련 키 발급 받아야함.
 // 요청 URL 및 리다이엑션 URL 설정해주기
 // http://localhost:3000
 // http://localhost:3000/api/auth/callback/google
