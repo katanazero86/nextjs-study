@@ -8,7 +8,7 @@ interface BasicButtonProps {
   disabled?: boolean;
   block?: boolean;
   loading?: boolean;
-  onClick(): void;
+  onClick?(): void;
 }
 
 const PREFIX = `btn-`;

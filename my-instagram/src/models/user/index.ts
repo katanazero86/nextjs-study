@@ -20,3 +20,11 @@ export interface SearchUserModel {
   following: number;
   followers: number;
 }
+// module:next-auth.Session.user: {userName: string, id: string} & {name?: string | null | undefined, email?: string | null | undefined, image?: string | null | undefined}
+export interface AuthUser {
+  userName: string;
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+}

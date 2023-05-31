@@ -36,7 +36,9 @@ export default function Header() {
             </Link>
           </label>
           <label tabIndex={0} className="px-2 cursor-pointer">
-            <BiMessageSquareAdd size={24} />
+            <Link href="/new_post">
+              <BiMessageSquareAdd size={24} />
+            </Link>
           </label>
           {targetUser && (
             <div className="mx-2.5 dropdown dropdown-end">

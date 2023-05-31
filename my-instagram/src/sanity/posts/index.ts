@@ -1,4 +1,4 @@
-import { client } from '@/sanity';
+import { assetsURL, client } from '@/sanity';
 import { FIND_POSTS_QUERY } from '@/sanity/posts/posts.query';
 
 // *[ <filter> ]{ <projection> }
@@ -60,5 +60,29 @@ export const sanityPosts = {
         },
       ])
       .commit({ autoGenerateArrayKeys: true });
+  },
+  async createPost(userId: string, text: string, file: Blob) {
+    return fetch(assetsURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': file.type,
+        authorization: `Bearer ${process.env.NEXT_PUBLIC_SANITY_API_TOKEN}`,
+      },
+      body: file,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        return client.create(
+          {
+            _type: 'post',
+            author: { _ref: userId },
+            image: { asset: { _ref: result.document._id } },
+            content: text,
+            comments: [],
+            likes: [],
+          },
+          { autoGenerateArrayKeys: true },
+        );
+      });
   },
 };
